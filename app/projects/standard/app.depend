@@ -1,0 +1,1666 @@
+# depslib dependency file v1.0
+1758880786 source:d:\desktop\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_clk.c
+	"include.h"
+
+1683508864 d:\desktop\sdk_ab15x_s1061_20260309\app\platform\header\include.h
+	"global.h"
+	"xcfg.h"
+	"config.h"
+	"io_def.h"
+	"api.h"
+	"func.h"
+	"bsp.h"
+	"modules.h"
+	"gui.h"
+	"plugin.h"
+	"res.h"
+
+1726054366 d:\desktop\sdk_ab15x_s1061_20260309\app\platform\header\global.h
+	<stddef.h>
+	<stdarg.h>
+	<stdbool.h>
+	<stdlib.h>
+	<string.h>
+	"typedef.h"
+	"macro.h"
+	"clib.h"
+	"sfr.h"
+
+1681823711 d:\desktop\sdk_ab15x_s1061_20260309\app\platform\header\typedef.h
+
+1681823711 d:\desktop\sdk_ab15x_s1061_20260309\app\platform\header\macro.h
+
+1681823711 d:\desktop\sdk_ab15x_s1061_20260309\app\platform\header\clib.h
+
+1731460969 d:\desktop\sdk_ab15x_s1061_20260309\app\platform\header\sfr.h
+
+1731313772 d:\desktop\sdk_ab15x_s1061_20260309\app\projects\standard\xcfg.h
+
+1778218153 d:\desktop\sdk_ab15x_s1061_20260309\app\projects\standard\config.h
+	"config_define.h"
+	"config_extra.h"
+
+1763949560 d:\desktop\sdk_ab15x_s1061_20260309\app\platform\header\config_define.h
+
+1752225609 d:\desktop\sdk_ab15x_s1061_20260309\app\platform\header\config_extra.h
+
+1687243750 d:\desktop\sdk_ab15x_s1061_20260309\app\platform\header\io_def.h
+	"global.h"
+	"config.h"
+	"sfr.h"
+
+1742439735 d:\desktop\sdk_ab15x_s1061_20260309\app\platform\libs\api.h
+	"api_buffer.h"
+	"api_cm.h"
+	"api_music.h"
+	"api_sd.h"
+	"api_rtc.h"
+	"api_fs.h"
+	"api_device.h"
+	"api_update.h"
+	"api_dac.h"
+	"api_sysclk.h"
+	"api_msg.h"
+	"api_saradc.h"
+	"api_sys.h"
+	"api_pwr.h"
+	"api_key.h"
+	"api_gpio.h"
+	"api_midi.h"
+	"api_math.h"
+	"api_fft.h"
+	"api_lfs.h"
+
+1719199106 d:\desktop\sdk_ab15x_s1061_20260309\app\platform\libs\api_buffer.h
+
+1681823711 d:\desktop\sdk_ab15x_s1061_20260309\app\platform\libs\api_cm.h
+
+1772415679 d:\desktop\sdk_ab15x_s1061_20260309\app\platform\libs\api_music.h
+
+1681823711 d:\desktop\sdk_ab15x_s1061_20260309\app\platform\libs\api_sd.h
+
+1681823711 d:\desktop\sdk_ab15x_s1061_20260309\app\platform\libs\api_rtc.h
+
+1681823711 d:\desktop\sdk_ab15x_s1061_20260309\app\platform\libs\api_fs.h
+
+1681823711 d:\desktop\sdk_ab15x_s1061_20260309\app\platform\libs\api_device.h
+
+1740983369 d:\desktop\sdk_ab15x_s1061_20260309\app\platform\libs\api_update.h
+
+1768999287 d:\desktop\sdk_ab15x_s1061_20260309\app\platform\libs\api_dac.h
+
+1723109465 d:\desktop\sdk_ab15x_s1061_20260309\app\platform\libs\api_sysclk.h
+
+1681823711 d:\desktop\sdk_ab15x_s1061_20260309\app\platform\libs\api_msg.h
+
+1716187751 d:\desktop\sdk_ab15x_s1061_20260309\app\platform\libs\api_saradc.h
+
+1757062466 d:\desktop\sdk_ab15x_s1061_20260309\app\platform\libs\api_sys.h
+
+1710160544 d:\desktop\sdk_ab15x_s1061_20260309\app\platform\libs\api_pwr.h
+
+1681823711 d:\desktop\sdk_ab15x_s1061_20260309\app\platform\libs\api_key.h
+
+1778207093 d:\desktop\sdk_ab15x_s1061_20260309\app\platform\libs\api_gpio.h
+
+1769763060 d:\desktop\sdk_ab15x_s1061_20260309\app\platform\libs\api_midi.h
+
+1718778336 d:\desktop\sdk_ab15x_s1061_20260309\app\platform\libs\api_math.h
+
+1724740505 d:\desktop\sdk_ab15x_s1061_20260309\app\platform\libs\api_fft.h
+
+1749608744 d:\desktop\sdk_ab15x_s1061_20260309\app\platform\libs\api_lfs.h
+
+1778224329 d:\desktop\sdk_ab15x_s1061_20260309\app\projects\standard\functions\func.h
+	"func_idle.h"
+	"func_music.h"
+	"func_lowpwr.h"
+	"func_uart_upd.h"
+	"func_exspiflash_music.h"
+	"func_clock.h"
+
+1722913895 d:\desktop\sdk_ab15x_s1061_20260309\app\projects\standard\functions\func_idle.h
+
+1760949429 d:\desktop\sdk_ab15x_s1061_20260309\app\projects\standard\functions\func_music.h
+
+1744015497 d:\desktop\sdk_ab15x_s1061_20260309\app\projects\standard\functions\func_lowpwr.h
+
+1740983369 d:\desktop\sdk_ab15x_s1061_20260309\app\projects\standard\functions\func_uart_upd.h
+
+1760943083 d:\desktop\sdk_ab15x_s1061_20260309\app\projects\standard\functions\func_exspiflash_music.h
+	"spiflash/spiflash1.h"
+
+1757580453 d:\desktop\sdk_ab15x_s1061_20260309\app\platform\modules\spiflash\spiflash1.h
+
+1757486924 d:\desktop\sdk_ab15x_s1061_20260309\app\projects\standard\functions\func_clock.h
+
+1756369033 d:\desktop\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp.h
+	"port_init.h"
+	"port_pwm.h"
+	"bsp_sys.h"
+	"bsp_param.h"
+	"bsp_dac.h"
+	"bsp_music.h"
+	"bsp_i2c.h"
+	"bsp_huart.h"
+	"bsp_ir.h"
+	"bsp_fs.h"
+	"bsp_spi_audio.h"
+	"bsp_uart.h"
+	"bsp_saradc.h"
+	"bsp_clk.h"
+	"bsp_rtc.h"
+	"bsp_timer.h"
+	"bsp_user_music.h"
+	"bsp_lfs.h"
+
+1763036008 d:\desktop\sdk_ab15x_s1061_20260309\app\projects\standard\port\port_init.h
+
+1756369033 d:\desktop\sdk_ab15x_s1061_20260309\app\projects\standard\port\port_pwm.h
+
+1742976401 d:\desktop\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_sys.h
+
+1747797787 d:\desktop\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_param.h
+
+1769753909 d:\desktop\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_dac.h
+
+1769136941 d:\desktop\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_music.h
+
+1764160914 d:\desktop\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_i2c.h
+
+1724835091 d:\desktop\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_huart.h
+
+1683599396 d:\desktop\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_ir.h
+
+1685084571 d:\desktop\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_fs.h
+
+1758197663 d:\desktop\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_spi_audio.h
+
+1701336433 d:\desktop\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_uart.h
+
+1724835091 d:\desktop\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_saradc.h
+
+1723274356 d:\desktop\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_clk.h
+
+1757423182 d:\desktop\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_rtc.h
+
+1723788540 d:\desktop\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_timer.h
+
+1739967559 d:\desktop\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_user_music.h
+	"spiflash/spiflash1.h"
+
+1761119702 d:\desktop\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_lfs.h
+
+1739192854 d:\desktop\sdk_ab15x_s1061_20260309\app\platform\modules\modules.h
+	"fft/fft_proc.h"
+	"key/key_scan.h"
+	"key/matrix_key.h"
+	"spiflash/spiflash1.h"
+	"led/led.h"
+	"led/spi_led.h"
+	"spilcd/lcd_display.h"
+	"midi/midi.h"
+	"midi/midi_song.h"
+	"midi/midi_rec.h"
+	"midi/midi_keyboard.h"
+	"midi/midi_voice.h"
+	"midi/midi_metronome.h"
+	"key/tkey.h"
+
+1724741902 d:\desktop\sdk_ab15x_s1061_20260309\app\platform\modules\fft\fft_proc.h
+
+1742263996 d:\desktop\sdk_ab15x_s1061_20260309\app\platform\modules\key\key_scan.h
+
+1778218651 d:\desktop\sdk_ab15x_s1061_20260309\app\platform\modules\key\matrix_key.h
+
+1695001777 d:\desktop\sdk_ab15x_s1061_20260309\app\platform\modules\led\led.h
+
+1763036008 d:\desktop\sdk_ab15x_s1061_20260309\app\platform\modules\led\spi_led.h
+
+1709026760 d:\desktop\sdk_ab15x_s1061_20260309\app\platform\modules\spilcd\lcd_display.h
+
+1769754219 d:\desktop\sdk_ab15x_s1061_20260309\app\platform\modules\midi\midi.h
+
+1769754219 d:\desktop\sdk_ab15x_s1061_20260309\app\platform\modules\midi\midi_song.h
+
+1731892782 d:\desktop\sdk_ab15x_s1061_20260309\app\platform\modules\midi\midi_rec.h
+
+1752302814 d:\desktop\sdk_ab15x_s1061_20260309\app\platform\modules\midi\midi_keyboard.h
+
+1731741115 d:\desktop\sdk_ab15x_s1061_20260309\app\platform\modules\midi\midi_voice.h
+
+1738995875 d:\desktop\sdk_ab15x_s1061_20260309\app\platform\modules\midi\midi_metronome.h
+
+1750337819 d:\desktop\sdk_ab15x_s1061_20260309\app\platform\modules\key\tkey.h
+
+1681823711 d:\desktop\sdk_ab15x_s1061_20260309\app\platform\gui\gui.h
+	"ledseg/ledseg_common.h"
+	"ledseg/display_ledseg.h"
+	"lcd/lcd.h"
+	"lcd/display_lcd.h"
+	"lcd/display_listbox.h"
+	"lcd/list_view.h"
+	"lcd/listbox.h"
+	"lcd/dialogbox.h"
+	"lcd/display_dialogbox.h"
+
+1681823711 d:\desktop\sdk_ab15x_s1061_20260309\app\platform\gui\ledseg\ledseg_common.h
+
+1681823711 d:\desktop\sdk_ab15x_s1061_20260309\app\projects\standard\display\ledseg\display_ledseg.h
+	"ledseg/ledseg_7p7s.h"
+
+1681823711 d:\desktop\sdk_ab15x_s1061_20260309\app\platform\gui\ledseg\ledseg_7p7s.h
+
+1681823711 d:\desktop\sdk_ab15x_s1061_20260309\app\platform\gui\lcd\lcd.h
+
+1681823711 d:\desktop\sdk_ab15x_s1061_20260309\app\platform\gui\lcd\list_view.h
+
+1681823711 d:\desktop\sdk_ab15x_s1061_20260309\app\platform\gui\lcd\listbox.h
+
+1681823711 d:\desktop\sdk_ab15x_s1061_20260309\app\platform\gui\lcd\dialogbox.h
+
+1687243750 d:\desktop\sdk_ab15x_s1061_20260309\app\projects\standard\plugin\plugin.h
+	"multi_lang.h"
+	"port_led.h"
+	"port_sd.h"
+
+1695109984 d:\desktop\sdk_ab15x_s1061_20260309\app\projects\standard\plugin\multi_lang.h
+
+1685343838 d:\desktop\sdk_ab15x_s1061_20260309\app\projects\standard\port\port_led.h
+
+1687243750 d:\desktop\sdk_ab15x_s1061_20260309\app\projects\standard\port\port_sd.h
+
+1778225880 d:\desktop\sdk_ab15x_s1061_20260309\app\projects\standard\res.h
+
+1722305796 source:d:\desktop\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_cm.c
+	"include.h"
+
+1769753909 source:d:\desktop\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_dac.c
+	"include.h"
+	"bsp_dac.h"
+
+1772433987 source:d:\desktop\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_ext_dump.c
+	"include.h"
+
+1705926690 source:d:\desktop\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_freqdet.c
+	"include.h"
+	"bsp_freqdet.h"
+
+1693302338 d:\desktop\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_freqdet.h
+
+1732685982 source:d:\desktop\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_fs.c
+	"include.h"
+
+1773040198 source:d:\desktop\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_huart.c
+	"include.h"
+
+1764160914 source:d:\desktop\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_i2c.c
+	"include.h"
+
+1731913233 source:d:\desktop\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_ir.c
+	"include.h"
+
+1761119702 source:d:\desktop\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_lfs.c
+	"include.h"
+
+1772609964 source:d:\desktop\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_music.c
+	"include.h"
+
+1747797787 source:d:\desktop\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_param.c
+	"include.h"
+
+1757423182 source:d:\desktop\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_rtc.c
+	"include.h"
+
+1768392688 source:d:\desktop\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_saradc.c
+	"include.h"
+
+1758197663 source:d:\desktop\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_spi_audio.c
+	"include.h"
+
+1761702005 source:d:\desktop\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_sys.c
+	"include.h"
+
+1729498707 source:d:\desktop\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_timer.c
+	"include.h"
+
+1778310665 source:d:\desktop\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_uart.c
+	"include.h"
+
+1739967559 source:d:\desktop\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_user_music.c
+	"include.h"
+	"bsp_user_music.h"
+
+1757423182 source:d:\desktop\sdk_ab15x_s1061_20260309\app\platform\gui\gui.c
+	"include.h"
+	"gui.h"
+
+1681823711 source:d:\desktop\sdk_ab15x_s1061_20260309\app\platform\gui\ledseg\ledseg_7p7s.c
+	"include.h"
+	"ledseg_common.h"
+	"ledseg_7p7s.h"
+
+1681823711 source:d:\desktop\sdk_ab15x_s1061_20260309\app\platform\gui\ledseg\ledseg_common.c
+	"include.h"
+	"ledseg_common.h"
+	"ledseg_7p7s.h"
+
+1769754219 source:d:\desktop\sdk_ab15x_s1061_20260309\app\platform\libs\strong_symbol.c
+	"include.h"
+
+1751608763 source:d:\desktop\sdk_ab15x_s1061_20260309\app\platform\modules\fft\fft_proc.c
+	"include.h"
+	"fft_proc.h"
+
+1724740505 source:d:\desktop\sdk_ab15x_s1061_20260309\app\platform\modules\fft\fft_table.c
+	"include.h"
+	"fft_proc.h"
+
+1778212944 source:d:\desktop\sdk_ab15x_s1061_20260309\app\platform\modules\key\key_scan.c
+	"include.h"
+
+1778224625 source:d:\desktop\sdk_ab15x_s1061_20260309\app\platform\modules\key\matrix_key.c
+	"include.h"
+	"matrix_key.h"
+
+1750337819 source:d:\desktop\sdk_ab15x_s1061_20260309\app\platform\modules\key\tkey.c
+	"include.h"
+	"tkey.h"
+
+1703060058 source:d:\desktop\sdk_ab15x_s1061_20260309\app\platform\modules\led\led.c
+	"include.h"
+	"led.h"
+
+1763036008 source:d:\desktop\sdk_ab15x_s1061_20260309\app\platform\modules\led\spi_led.c
+	"include.h"
+	"spi_led.h"
+
+1769754219 source:d:\desktop\sdk_ab15x_s1061_20260309\app\platform\modules\midi\midi.c
+	"include.h"
+	"midi.h"
+
+1778138456 source:d:\desktop\sdk_ab15x_s1061_20260309\app\platform\modules\midi\midi_keyboard.c
+	"include.h"
+	"midi_keyboard.h"
+
+1738995875 source:d:\desktop\sdk_ab15x_s1061_20260309\app\platform\modules\midi\midi_metronome.c
+	"include.h"
+	"midi_metronome.h"
+
+1769754219 source:d:\desktop\sdk_ab15x_s1061_20260309\app\platform\modules\midi\midi_rec.c
+	"include.h"
+	"midi_rec.h"
+
+1772868753 source:d:\desktop\sdk_ab15x_s1061_20260309\app\platform\modules\midi\midi_song.c
+	"include.h"
+	"midi_song.h"
+
+1730884279 source:d:\desktop\sdk_ab15x_s1061_20260309\app\platform\modules\midi\midi_uart.c
+	"include.h"
+	"midi_uart.h"
+
+1730884279 d:\desktop\sdk_ab15x_s1061_20260309\app\platform\modules\midi\midi_uart.h
+
+1731741115 source:d:\desktop\sdk_ab15x_s1061_20260309\app\platform\modules\midi\midi_voice.c
+	"include.h"
+	"midi_voice.h"
+
+1745394138 source:d:\desktop\sdk_ab15x_s1061_20260309\app\platform\modules\spiflash\spiflash1.c
+	"include.h"
+	"spiflash1.h"
+
+1693193215 source:d:\desktop\sdk_ab15x_s1061_20260309\app\platform\modules\spiflash\spiflash1_music_bin.c
+	"include.h"
+
+1721702496 source:d:\desktop\sdk_ab15x_s1061_20260309\app\platform\modules\spilcd\lcd_display.c
+	"include.h"
+	"lcd_display.h"
+	"bsp_spi_audio.h"
+
+1709199296 source:d:\desktop\sdk_ab15x_s1061_20260309\app\platform\modules\spilcd\pic_tbl.c
+	"include.h"
+	"lcd_display.h"
+
+1757423182 source:d:\desktop\sdk_ab15x_s1061_20260309\app\projects\standard\config.c
+	"include.h"
+
+1681823711 source:d:\desktop\sdk_ab15x_s1061_20260309\app\projects\standard\display\display_idle.c
+	"include.h"
+	"func.h"
+	"func_idle.h"
+
+1681823711 source:d:\desktop\sdk_ab15x_s1061_20260309\app\projects\standard\display\ledseg\display_ledseg.c
+	"include.h"
+	"ledseg/display_ledseg.h"
+
+1778310646 source:d:\desktop\sdk_ab15x_s1061_20260309\app\projects\standard\functions\func.c
+	"include.h"
+
+1764556157 source:d:\desktop\sdk_ab15x_s1061_20260309\app\projects\standard\functions\func_clock.c
+	"include.h"
+	"func.h"
+	"func_clock.h"
+
+1763703815 source:d:\desktop\sdk_ab15x_s1061_20260309\app\projects\standard\functions\func_exspiflash_music.c
+	"include.h"
+	"func.h"
+	"func_exspiflash_music.h"
+	"api_spiflash_ex.h"
+
+1746007300 d:\desktop\sdk_ab15x_s1061_20260309\app\platform\libs\api_spiflash_ex.h
+
+1778142194 source:d:\desktop\sdk_ab15x_s1061_20260309\app\projects\standard\functions\func_idle.c
+	"include.h"
+	"func.h"
+	"func_idle.h"
+
+1763706898 source:d:\desktop\sdk_ab15x_s1061_20260309\app\projects\standard\functions\func_lowpwr.c
+	"include.h"
+	"func.h"
+
+1778142258 source:d:\desktop\sdk_ab15x_s1061_20260309\app\projects\standard\functions\func_music.c
+	"include.h"
+	"func.h"
+	"func_music.h"
+
+1740983369 source:d:\desktop\sdk_ab15x_s1061_20260309\app\projects\standard\functions\func_uart_upd.c
+	"include.h"
+	"func.h"
+	"func_update.h"
+
+1740983369 d:\desktop\sdk_ab15x_s1061_20260309\app\projects\standard\functions\func_update.h
+
+1760949429 source:d:\desktop\sdk_ab15x_s1061_20260309\app\projects\standard\functions\func_update.c
+	"include.h"
+	"func.h"
+	"func_update.h"
+
+1778225886 source:d:\desktop\sdk_ab15x_s1061_20260309\app\projects\standard\main.c
+	"include.h"
+
+1757486924 source:d:\desktop\sdk_ab15x_s1061_20260309\app\projects\standard\message\msg_clock.c
+	"include.h"
+	"func.h"
+	"func_clock.h"
+
+1752828635 source:d:\desktop\sdk_ab15x_s1061_20260309\app\projects\standard\message\msg_exspiflash_music.c
+	"include.h"
+	"func.h"
+	"func_exspiflash_music.h"
+
+1764073306 source:d:\desktop\sdk_ab15x_s1061_20260309\app\projects\standard\message\msg_idle.c
+	"include.h"
+	"func.h"
+	"func_idle.h"
+
+1778126724 source:d:\desktop\sdk_ab15x_s1061_20260309\app\projects\standard\message\msg_music.c
+	"include.h"
+	"func.h"
+	"func_music.h"
+
+1723640434 source:d:\desktop\sdk_ab15x_s1061_20260309\app\projects\standard\output\bin\app.xm
+	"config.h"
+
+1681823711 source:d:\desktop\sdk_ab15x_s1061_20260309\app\projects\standard\output\bin\download.xm
+
+1681823711 source:d:\desktop\sdk_ab15x_s1061_20260309\app\projects\standard\output\bin\res.xm
+
+1731313772 source:d:\desktop\sdk_ab15x_s1061_20260309\app\projects\standard\output\bin\xcfg.xm
+
+1681823711 source:d:\desktop\sdk_ab15x_s1061_20260309\app\projects\standard\plugin\eq_table.c
+	"include.h"
+
+1681823711 source:d:\desktop\sdk_ab15x_s1061_20260309\app\projects\standard\plugin\multi_lang.c
+	"include.h"
+
+1758097449 source:d:\desktop\sdk_ab15x_s1061_20260309\app\projects\standard\plugin\plugin.c
+	"include.h"
+
+1778218065 source:d:\desktop\sdk_ab15x_s1061_20260309\app\projects\standard\port\port_init.c
+	"include.h"
+
+1705568454 source:d:\desktop\sdk_ab15x_s1061_20260309\app\projects\standard\port\port_ir.c
+	"include.h"
+
+1732519649 source:d:\desktop\sdk_ab15x_s1061_20260309\app\projects\standard\port\port_key.c
+	"include.h"
+
+1685343838 source:d:\desktop\sdk_ab15x_s1061_20260309\app\projects\standard\port\port_led.c
+	"include.h"
+
+1681823711 source:d:\desktop\sdk_ab15x_s1061_20260309\app\projects\standard\port\port_ledseg.c
+	"include.h"
+
+1681823711 source:d:\desktop\sdk_ab15x_s1061_20260309\app\projects\standard\port\port_mute.c
+	"include.h"
+
+1756452370 source:d:\desktop\sdk_ab15x_s1061_20260309\app\projects\standard\port\port_pwm.c
+	"include.h"
+	"port_pwm.h"
+
+1688111079 source:d:\desktop\sdk_ab15x_s1061_20260309\app\projects\standard\port\port_sd.c
+	"include.h"
+
+1685686753 source:d:\desktop\sdk_ab15x_s1061_20260309\app\projects\standard\port\port_sd1.c
+	"include.h"
+
+1778208552 source:d:\desktop\sdk_ab15x_s1061_20260309\app\projects\standard\ram.ld
+	"config.h"
+
+1737034669 source:d:\desktop\sdk_ab15x_s1061_20260309\app\projects\standard\s_start.s
+	"s_common.h"
+	"config.h"
+
+1681823711 d:\desktop\sdk_ab15x_s1061_20260309\app\platform\header\s_common.h
+	"sfr.h"
+
+1758880788 source:d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_clk.c
+	"include.h"
+
+1683508866 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\header\include.h
+	"global.h"
+	"xcfg.h"
+	"config.h"
+	"io_def.h"
+	"api.h"
+	"func.h"
+	"bsp.h"
+	"modules.h"
+	"gui.h"
+	"plugin.h"
+	"res.h"
+
+1726054368 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\header\global.h
+	<stddef.h>
+	<stdarg.h>
+	<stdbool.h>
+	<stdlib.h>
+	<string.h>
+	"typedef.h"
+	"macro.h"
+	"clib.h"
+	"sfr.h"
+
+1681823712 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\header\typedef.h
+
+1681823712 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\header\macro.h
+
+1681823712 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\header\clib.h
+
+1731460970 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\header\sfr.h
+
+1731313774 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\projects\standard\xcfg.h
+
+1778218154 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\projects\standard\config.h
+	"config_define.h"
+	"config_extra.h"
+
+1763949562 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\header\config_define.h
+
+1752225610 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\header\config_extra.h
+
+1687243752 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\header\io_def.h
+	"global.h"
+	"config.h"
+	"sfr.h"
+
+1742439736 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\libs\api.h
+	"api_buffer.h"
+	"api_cm.h"
+	"api_music.h"
+	"api_sd.h"
+	"api_rtc.h"
+	"api_fs.h"
+	"api_device.h"
+	"api_update.h"
+	"api_dac.h"
+	"api_sysclk.h"
+	"api_msg.h"
+	"api_saradc.h"
+	"api_sys.h"
+	"api_pwr.h"
+	"api_key.h"
+	"api_gpio.h"
+	"api_midi.h"
+	"api_math.h"
+	"api_fft.h"
+	"api_lfs.h"
+
+1719199108 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\libs\api_buffer.h
+
+1681823712 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\libs\api_cm.h
+
+1772415680 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\libs\api_music.h
+
+1681823712 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\libs\api_sd.h
+
+1681823712 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\libs\api_rtc.h
+
+1681823712 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\libs\api_fs.h
+
+1681823712 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\libs\api_device.h
+
+1740983370 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\libs\api_update.h
+
+1768999288 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\libs\api_dac.h
+
+1723109466 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\libs\api_sysclk.h
+
+1681823712 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\libs\api_msg.h
+
+1716187752 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\libs\api_saradc.h
+
+1757062468 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\libs\api_sys.h
+
+1710160546 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\libs\api_pwr.h
+
+1681823712 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\libs\api_key.h
+
+1778207094 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\libs\api_gpio.h
+
+1769763062 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\libs\api_midi.h
+
+1718778338 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\libs\api_math.h
+
+1724740506 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\libs\api_fft.h
+
+1749608746 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\libs\api_lfs.h
+
+1778224330 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\projects\standard\functions\func.h
+	"func_idle.h"
+	"func_music.h"
+	"func_lowpwr.h"
+	"func_uart_upd.h"
+	"func_exspiflash_music.h"
+	"func_clock.h"
+
+1722913896 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\projects\standard\functions\func_idle.h
+
+1760949430 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\projects\standard\functions\func_music.h
+
+1744015498 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\projects\standard\functions\func_lowpwr.h
+
+1740983370 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\projects\standard\functions\func_uart_upd.h
+
+1760943084 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\projects\standard\functions\func_exspiflash_music.h
+	"spiflash/spiflash1.h"
+
+1757580454 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\modules\spiflash\spiflash1.h
+
+1757486926 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\projects\standard\functions\func_clock.h
+
+1756369034 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp.h
+	"port_init.h"
+	"port_pwm.h"
+	"bsp_sys.h"
+	"bsp_param.h"
+	"bsp_dac.h"
+	"bsp_music.h"
+	"bsp_i2c.h"
+	"bsp_huart.h"
+	"bsp_ir.h"
+	"bsp_fs.h"
+	"bsp_spi_audio.h"
+	"bsp_uart.h"
+	"bsp_saradc.h"
+	"bsp_clk.h"
+	"bsp_rtc.h"
+	"bsp_timer.h"
+	"bsp_user_music.h"
+	"bsp_lfs.h"
+
+1763036010 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\projects\standard\port\port_init.h
+
+1756369034 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\projects\standard\port\port_pwm.h
+
+1742976402 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_sys.h
+
+1747797788 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_param.h
+
+1769753910 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_dac.h
+
+1769136942 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_music.h
+
+1764160916 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_i2c.h
+
+1724835092 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_huart.h
+
+1683599398 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_ir.h
+
+1685084572 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_fs.h
+
+1758197664 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_spi_audio.h
+
+1701336434 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_uart.h
+
+1724835092 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_saradc.h
+
+1723274358 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_clk.h
+
+1757423184 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_rtc.h
+
+1723788542 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_timer.h
+
+1739967560 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_user_music.h
+	"spiflash/spiflash1.h"
+
+1761119704 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_lfs.h
+
+1739192856 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\modules\modules.h
+	"fft/fft_proc.h"
+	"key/key_scan.h"
+	"key/matrix_key.h"
+	"spiflash/spiflash1.h"
+	"led/led.h"
+	"led/spi_led.h"
+	"spilcd/lcd_display.h"
+	"midi/midi.h"
+	"midi/midi_song.h"
+	"midi/midi_rec.h"
+	"midi/midi_keyboard.h"
+	"midi/midi_voice.h"
+	"midi/midi_metronome.h"
+	"key/tkey.h"
+
+1724741904 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\modules\fft\fft_proc.h
+
+1742263998 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\modules\key\key_scan.h
+
+1778218652 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\modules\key\matrix_key.h
+
+1695001778 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\modules\led\led.h
+
+1763036010 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\modules\led\spi_led.h
+
+1709026762 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\modules\spilcd\lcd_display.h
+
+1769754220 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\modules\midi\midi.h
+
+1769754220 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\modules\midi\midi_song.h
+
+1731892784 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\modules\midi\midi_rec.h
+
+1752302816 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\modules\midi\midi_keyboard.h
+
+1731741116 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\modules\midi\midi_voice.h
+
+1738995876 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\modules\midi\midi_metronome.h
+
+1750337820 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\modules\key\tkey.h
+
+1681823712 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\gui\gui.h
+	"ledseg/ledseg_common.h"
+	"ledseg/display_ledseg.h"
+	"lcd/lcd.h"
+	"lcd/display_lcd.h"
+	"lcd/display_listbox.h"
+	"lcd/list_view.h"
+	"lcd/listbox.h"
+	"lcd/dialogbox.h"
+	"lcd/display_dialogbox.h"
+
+1681823712 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\gui\ledseg\ledseg_common.h
+
+1681823712 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\projects\standard\display\ledseg\display_ledseg.h
+	"ledseg/ledseg_7p7s.h"
+
+1681823712 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\gui\ledseg\ledseg_7p7s.h
+
+1681823712 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\gui\lcd\lcd.h
+
+1681823712 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\gui\lcd\list_view.h
+
+1681823712 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\gui\lcd\listbox.h
+
+1681823712 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\gui\lcd\dialogbox.h
+
+1687243752 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\projects\standard\plugin\plugin.h
+	"multi_lang.h"
+	"port_led.h"
+	"port_sd.h"
+
+1695109986 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\projects\standard\plugin\multi_lang.h
+
+1685343840 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\projects\standard\port\port_led.h
+
+1687243752 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\projects\standard\port\port_sd.h
+
+1778225882 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\projects\standard\res.h
+
+1722305798 source:d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_cm.c
+	"include.h"
+
+1769753910 source:d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_dac.c
+	"include.h"
+	"bsp_dac.h"
+
+1772433988 source:d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_ext_dump.c
+	"include.h"
+
+1705926692 source:d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_freqdet.c
+	"include.h"
+	"bsp_freqdet.h"
+
+1693302340 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_freqdet.h
+
+1732685984 source:d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_fs.c
+	"include.h"
+
+1773040200 source:d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_huart.c
+	"include.h"
+
+1764160916 source:d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_i2c.c
+	"include.h"
+
+1731913234 source:d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_ir.c
+	"include.h"
+
+1761119704 source:d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_lfs.c
+	"include.h"
+
+1772609966 source:d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_music.c
+	"include.h"
+
+1747797788 source:d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_param.c
+	"include.h"
+
+1757423184 source:d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_rtc.c
+	"include.h"
+
+1768392690 source:d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_saradc.c
+	"include.h"
+
+1758197664 source:d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_spi_audio.c
+	"include.h"
+
+1761702006 source:d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_sys.c
+	"include.h"
+
+1729498708 source:d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_timer.c
+	"include.h"
+
+1778310666 source:d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_uart.c
+	"include.h"
+
+1739967560 source:d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_user_music.c
+	"include.h"
+	"bsp_user_music.h"
+
+1757423184 source:d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\gui\gui.c
+	"include.h"
+	"gui.h"
+
+1681823712 source:d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\gui\ledseg\ledseg_7p7s.c
+	"include.h"
+	"ledseg_common.h"
+	"ledseg_7p7s.h"
+
+1681823712 source:d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\gui\ledseg\ledseg_common.c
+	"include.h"
+	"ledseg_common.h"
+	"ledseg_7p7s.h"
+
+1769754220 source:d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\libs\strong_symbol.c
+	"include.h"
+
+1751608764 source:d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\modules\fft\fft_proc.c
+	"include.h"
+	"fft_proc.h"
+
+1724740506 source:d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\modules\fft\fft_table.c
+	"include.h"
+	"fft_proc.h"
+
+1778212946 source:d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\modules\key\key_scan.c
+	"include.h"
+
+1778224626 source:d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\modules\key\matrix_key.c
+	"include.h"
+	"matrix_key.h"
+
+1750337820 source:d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\modules\key\tkey.c
+	"include.h"
+	"tkey.h"
+
+1703060060 source:d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\modules\led\led.c
+	"include.h"
+	"led.h"
+
+1763036010 source:d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\modules\led\spi_led.c
+	"include.h"
+	"spi_led.h"
+
+1769754220 source:d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\modules\midi\midi.c
+	"include.h"
+	"midi.h"
+
+1778138458 source:d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\modules\midi\midi_keyboard.c
+	"include.h"
+	"midi_keyboard.h"
+
+1738995876 source:d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\modules\midi\midi_metronome.c
+	"include.h"
+	"midi_metronome.h"
+
+1769754220 source:d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\modules\midi\midi_rec.c
+	"include.h"
+	"midi_rec.h"
+
+1772868754 source:d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\modules\midi\midi_song.c
+	"include.h"
+	"midi_song.h"
+
+1730884280 source:d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\modules\midi\midi_uart.c
+	"include.h"
+	"midi_uart.h"
+
+1730884280 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\modules\midi\midi_uart.h
+
+1731741116 source:d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\modules\midi\midi_voice.c
+	"include.h"
+	"midi_voice.h"
+
+1745394140 source:d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\modules\spiflash\spiflash1.c
+	"include.h"
+	"spiflash1.h"
+
+1693193216 source:d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\modules\spiflash\spiflash1_music_bin.c
+	"include.h"
+
+1721702498 source:d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\modules\spilcd\lcd_display.c
+	"include.h"
+	"lcd_display.h"
+	"bsp_spi_audio.h"
+
+1709199298 source:d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\modules\spilcd\pic_tbl.c
+	"include.h"
+	"lcd_display.h"
+
+1757423184 source:d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\projects\standard\config.c
+	"include.h"
+
+1681823712 source:d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\projects\standard\display\display_idle.c
+	"include.h"
+	"func.h"
+	"func_idle.h"
+
+1681823712 source:d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\projects\standard\display\ledseg\display_ledseg.c
+	"include.h"
+	"ledseg/display_ledseg.h"
+
+1778389077 source:d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\projects\standard\functions\func.c
+	"include.h"
+
+1764556158 source:d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\projects\standard\functions\func_clock.c
+	"include.h"
+	"func.h"
+	"func_clock.h"
+
+1763703816 source:d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\projects\standard\functions\func_exspiflash_music.c
+	"include.h"
+	"func.h"
+	"func_exspiflash_music.h"
+	"api_spiflash_ex.h"
+
+1746007302 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\libs\api_spiflash_ex.h
+
+1778142196 source:d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\projects\standard\functions\func_idle.c
+	"include.h"
+	"func.h"
+	"func_idle.h"
+
+1763706900 source:d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\projects\standard\functions\func_lowpwr.c
+	"include.h"
+	"func.h"
+
+1778142260 source:d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\projects\standard\functions\func_music.c
+	"include.h"
+	"func.h"
+	"func_music.h"
+
+1740983370 source:d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\projects\standard\functions\func_uart_upd.c
+	"include.h"
+	"func.h"
+	"func_update.h"
+
+1740983370 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\projects\standard\functions\func_update.h
+
+1760949430 source:d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\projects\standard\functions\func_update.c
+	"include.h"
+	"func.h"
+	"func_update.h"
+
+1778225888 source:d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\projects\standard\main.c
+	"include.h"
+
+1757486926 source:d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\projects\standard\message\msg_clock.c
+	"include.h"
+	"func.h"
+	"func_clock.h"
+
+1752828636 source:d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\projects\standard\message\msg_exspiflash_music.c
+	"include.h"
+	"func.h"
+	"func_exspiflash_music.h"
+
+1764073308 source:d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\projects\standard\message\msg_idle.c
+	"include.h"
+	"func.h"
+	"func_idle.h"
+
+1778126726 source:d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\projects\standard\message\msg_music.c
+	"include.h"
+	"func.h"
+	"func_music.h"
+
+1723640436 source:d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\projects\standard\output\bin\app.xm
+	"config.h"
+
+1681823712 source:d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\projects\standard\output\bin\download.xm
+
+1681823712 source:d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\projects\standard\output\bin\res.xm
+
+1731313774 source:d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\projects\standard\output\bin\xcfg.xm
+
+1681823712 source:d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\projects\standard\plugin\eq_table.c
+	"include.h"
+
+1681823712 source:d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\projects\standard\plugin\multi_lang.c
+	"include.h"
+
+1758097450 source:d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\projects\standard\plugin\plugin.c
+	"include.h"
+
+1778218066 source:d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\projects\standard\port\port_init.c
+	"include.h"
+
+1705568456 source:d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\projects\standard\port\port_ir.c
+	"include.h"
+
+1732519650 source:d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\projects\standard\port\port_key.c
+	"include.h"
+
+1685343840 source:d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\projects\standard\port\port_led.c
+	"include.h"
+
+1681823712 source:d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\projects\standard\port\port_ledseg.c
+	"include.h"
+
+1681823712 source:d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\projects\standard\port\port_mute.c
+	"include.h"
+
+1756452372 source:d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\projects\standard\port\port_pwm.c
+	"include.h"
+	"port_pwm.h"
+
+1688111080 source:d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\projects\standard\port\port_sd.c
+	"include.h"
+
+1685686754 source:d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\projects\standard\port\port_sd1.c
+	"include.h"
+
+1778208554 source:d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\projects\standard\ram.ld
+	"config.h"
+
+1737034670 source:d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\projects\standard\s_start.s
+	"s_common.h"
+	"config.h"
+
+1681823712 d:\桌面\公司\代码\最新\sdk_ab15x_s1061_20260309\app\platform\header\s_common.h
+	"sfr.h"
+
+1758880788 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_clk.c
+	"include.h"
+
+1683508866 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\header\include.h
+	"global.h"
+	"xcfg.h"
+	"config.h"
+	"io_def.h"
+	"api.h"
+	"func.h"
+	"bsp.h"
+	"modules.h"
+	"gui.h"
+	"plugin.h"
+	"res.h"
+
+1726054368 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\header\global.h
+	<stddef.h>
+	<stdarg.h>
+	<stdbool.h>
+	<stdlib.h>
+	<string.h>
+	"typedef.h"
+	"macro.h"
+	"clib.h"
+	"sfr.h"
+
+1681823712 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\header\typedef.h
+
+1681823712 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\header\macro.h
+
+1681823712 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\header\clib.h
+
+1731460970 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\header\sfr.h
+
+1731313774 d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\xcfg.h
+
+1778752848 d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\config.h
+	"config_define.h"
+	"config_extra.h"
+
+1763949562 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\header\config_define.h
+
+1752225610 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\header\config_extra.h
+
+1687243752 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\header\io_def.h
+	"global.h"
+	"config.h"
+	"sfr.h"
+
+1742439736 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\libs\api.h
+	"api_buffer.h"
+	"api_cm.h"
+	"api_music.h"
+	"api_sd.h"
+	"api_rtc.h"
+	"api_fs.h"
+	"api_device.h"
+	"api_update.h"
+	"api_dac.h"
+	"api_sysclk.h"
+	"api_msg.h"
+	"api_saradc.h"
+	"api_sys.h"
+	"api_pwr.h"
+	"api_key.h"
+	"api_gpio.h"
+	"api_midi.h"
+	"api_math.h"
+	"api_fft.h"
+	"api_lfs.h"
+
+1719199108 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\libs\api_buffer.h
+
+1681823712 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\libs\api_cm.h
+
+1772415680 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\libs\api_music.h
+
+1681823712 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\libs\api_sd.h
+
+1681823712 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\libs\api_rtc.h
+
+1681823712 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\libs\api_fs.h
+
+1681823712 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\libs\api_device.h
+
+1740983370 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\libs\api_update.h
+
+1768999288 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\libs\api_dac.h
+
+1723109466 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\libs\api_sysclk.h
+
+1681823712 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\libs\api_msg.h
+
+1716187752 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\libs\api_saradc.h
+
+1757062468 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\libs\api_sys.h
+
+1710160546 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\libs\api_pwr.h
+
+1681823712 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\libs\api_key.h
+
+1778207094 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\libs\api_gpio.h
+
+1769763062 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\libs\api_midi.h
+
+1718778338 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\libs\api_math.h
+
+1724740506 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\libs\api_fft.h
+
+1749608746 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\libs\api_lfs.h
+
+1778836111 d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\functions\func.h
+	"func_idle.h"
+	"func_music.h"
+	"func_lowpwr.h"
+	"func_uart_upd.h"
+	"func_exspiflash_music.h"
+	"func_clock.h"
+
+1722913896 d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\functions\func_idle.h
+
+1760949430 d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\functions\func_music.h
+
+1744015498 d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\functions\func_lowpwr.h
+
+1740983370 d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\functions\func_uart_upd.h
+
+1760943084 d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\functions\func_exspiflash_music.h
+	"spiflash/spiflash1.h"
+
+1757580454 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\modules\spiflash\spiflash1.h
+
+1757486926 d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\functions\func_clock.h
+
+1756369034 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp.h
+	"port_init.h"
+	"port_pwm.h"
+	"bsp_sys.h"
+	"bsp_param.h"
+	"bsp_dac.h"
+	"bsp_music.h"
+	"bsp_i2c.h"
+	"bsp_huart.h"
+	"bsp_ir.h"
+	"bsp_fs.h"
+	"bsp_spi_audio.h"
+	"bsp_uart.h"
+	"bsp_saradc.h"
+	"bsp_clk.h"
+	"bsp_rtc.h"
+	"bsp_timer.h"
+	"bsp_user_music.h"
+	"bsp_lfs.h"
+
+1778737920 d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\port\port_init.h
+
+1756369034 d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\port\port_pwm.h
+
+1742976402 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_sys.h
+
+1747797788 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_param.h
+
+1769753910 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_dac.h
+
+1769136942 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_music.h
+
+1764160916 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_i2c.h
+
+1724835092 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_huart.h
+
+1683599398 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_ir.h
+
+1685084572 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_fs.h
+
+1758197664 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_spi_audio.h
+
+1701336434 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_uart.h
+
+1724835092 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_saradc.h
+
+1723274358 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_clk.h
+
+1757423184 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_rtc.h
+
+1723788542 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_timer.h
+
+1739967560 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_user_music.h
+	"spiflash/spiflash1.h"
+
+1761119704 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_lfs.h
+
+1739192856 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\modules\modules.h
+	"fft/fft_proc.h"
+	"key/key_scan.h"
+	"key/matrix_key.h"
+	"spiflash/spiflash1.h"
+	"led/led.h"
+	"led/spi_led.h"
+	"spilcd/lcd_display.h"
+	"midi/midi.h"
+	"midi/midi_song.h"
+	"midi/midi_rec.h"
+	"midi/midi_keyboard.h"
+	"midi/midi_voice.h"
+	"midi/midi_metronome.h"
+	"key/tkey.h"
+
+1724741904 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\modules\fft\fft_proc.h
+
+1742263998 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\modules\key\key_scan.h
+
+1778218652 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\modules\key\matrix_key.h
+
+1695001778 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\modules\led\led.h
+
+1763036010 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\modules\led\spi_led.h
+
+1709026762 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\modules\spilcd\lcd_display.h
+
+1769754220 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\modules\midi\midi.h
+
+1769754220 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\modules\midi\midi_song.h
+
+1731892784 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\modules\midi\midi_rec.h
+
+1752302816 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\modules\midi\midi_keyboard.h
+
+1731741116 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\modules\midi\midi_voice.h
+
+1738995876 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\modules\midi\midi_metronome.h
+
+1750337820 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\modules\key\tkey.h
+
+1681823712 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\gui\gui.h
+	"ledseg/ledseg_common.h"
+	"ledseg/display_ledseg.h"
+	"lcd/lcd.h"
+	"lcd/display_lcd.h"
+	"lcd/display_listbox.h"
+	"lcd/list_view.h"
+	"lcd/listbox.h"
+	"lcd/dialogbox.h"
+	"lcd/display_dialogbox.h"
+
+1681823712 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\gui\ledseg\ledseg_common.h
+
+1681823712 d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\display\ledseg\display_ledseg.h
+	"ledseg/ledseg_7p7s.h"
+
+1681823712 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\gui\ledseg\ledseg_7p7s.h
+
+1681823712 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\gui\lcd\lcd.h
+
+1681823712 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\gui\lcd\list_view.h
+
+1681823712 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\gui\lcd\listbox.h
+
+1681823712 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\gui\lcd\dialogbox.h
+
+1687243752 d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\plugin\plugin.h
+	"multi_lang.h"
+	"port_led.h"
+	"port_sd.h"
+
+1695109986 d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\plugin\multi_lang.h
+
+1685343840 d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\port\port_led.h
+
+1687243752 d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\port\port_sd.h
+
+1778654141 d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\res.h
+
+1722305798 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_cm.c
+	"include.h"
+
+1769753910 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_dac.c
+	"include.h"
+	"bsp_dac.h"
+
+1772433988 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_ext_dump.c
+	"include.h"
+
+1705926692 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_freqdet.c
+	"include.h"
+	"bsp_freqdet.h"
+
+1693302340 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_freqdet.h
+
+1732685984 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_fs.c
+	"include.h"
+
+1773040200 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_huart.c
+	"include.h"
+
+1778558245 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_i2c.c
+	"include.h"
+
+1731913234 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_ir.c
+	"include.h"
+
+1761119704 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_lfs.c
+	"include.h"
+
+1772609966 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_music.c
+	"include.h"
+
+1747797788 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_param.c
+	"include.h"
+
+1757423184 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_rtc.c
+	"include.h"
+
+1768392690 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_saradc.c
+	"include.h"
+
+1758197664 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_spi_audio.c
+	"include.h"
+
+1761702006 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_sys.c
+	"include.h"
+
+1729498708 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_timer.c
+	"include.h"
+
+1778310666 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_uart.c
+	"include.h"
+
+1739967560 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_user_music.c
+	"include.h"
+	"bsp_user_music.h"
+
+1757423184 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\gui\gui.c
+	"include.h"
+	"gui.h"
+
+1681823712 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\gui\ledseg\ledseg_7p7s.c
+	"include.h"
+	"ledseg_common.h"
+	"ledseg_7p7s.h"
+
+1681823712 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\gui\ledseg\ledseg_common.c
+	"include.h"
+	"ledseg_common.h"
+	"ledseg_7p7s.h"
+
+1769754220 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\libs\strong_symbol.c
+	"include.h"
+
+1751608764 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\modules\fft\fft_proc.c
+	"include.h"
+	"fft_proc.h"
+
+1724740506 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\modules\fft\fft_table.c
+	"include.h"
+	"fft_proc.h"
+
+1778212946 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\modules\key\key_scan.c
+	"include.h"
+
+1778486315 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\modules\key\matrix_key.c
+	"include.h"
+	"matrix_key.h"
+
+1750337820 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\modules\key\tkey.c
+	"include.h"
+	"tkey.h"
+
+1703060060 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\modules\led\led.c
+	"include.h"
+	"led.h"
+
+1763036010 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\modules\led\spi_led.c
+	"include.h"
+	"spi_led.h"
+
+1769754220 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\modules\midi\midi.c
+	"include.h"
+	"midi.h"
+
+1778138458 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\modules\midi\midi_keyboard.c
+	"include.h"
+	"midi_keyboard.h"
+
+1738995876 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\modules\midi\midi_metronome.c
+	"include.h"
+	"midi_metronome.h"
+
+1769754220 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\modules\midi\midi_rec.c
+	"include.h"
+	"midi_rec.h"
+
+1778466225 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\modules\midi\midi_song.c
+	"include.h"
+	"midi_song.h"
+
+1730884280 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\modules\midi\midi_uart.c
+	"include.h"
+	"midi_uart.h"
+
+1730884280 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\modules\midi\midi_uart.h
+
+1731741116 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\modules\midi\midi_voice.c
+	"include.h"
+	"midi_voice.h"
+
+1745394140 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\modules\spiflash\spiflash1.c
+	"include.h"
+	"spiflash1.h"
+
+1693193216 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\modules\spiflash\spiflash1_music_bin.c
+	"include.h"
+
+1721702498 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\modules\spilcd\lcd_display.c
+	"include.h"
+	"lcd_display.h"
+	"bsp_spi_audio.h"
+
+1709199298 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\modules\spilcd\pic_tbl.c
+	"include.h"
+	"lcd_display.h"
+
+1757423184 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\config.c
+	"include.h"
+
+1681823712 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\display\display_idle.c
+	"include.h"
+	"func.h"
+	"func_idle.h"
+
+1681823712 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\display\ledseg\display_ledseg.c
+	"include.h"
+	"ledseg/display_ledseg.h"
+
+1764556158 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\functions\func_clock.c
+	"include.h"
+	"func.h"
+	"func_clock.h"
+
+1763703816 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\functions\func_exspiflash_music.c
+	"include.h"
+	"func.h"
+	"func_exspiflash_music.h"
+	"api_spiflash_ex.h"
+
+1746007302 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\libs\api_spiflash_ex.h
+
+1778465406 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\functions\func_idle.c
+	"include.h"
+	"func.h"
+	"func_idle.h"
+
+1778744465 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\functions\func_lowpwr.c
+	"include.h"
+	"func.h"
+
+1778142260 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\functions\func_music.c
+	"include.h"
+	"func.h"
+	"func_music.h"
+
+1740983370 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\functions\func_uart_upd.c
+	"include.h"
+	"func.h"
+	"func_update.h"
+
+1740983370 d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\functions\func_update.h
+
+1760949430 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\functions\func_update.c
+	"include.h"
+	"func.h"
+	"func_update.h"
+
+1778477957 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\main.c
+	"include.h"
+
+1757486926 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\message\msg_clock.c
+	"include.h"
+	"func.h"
+	"func_clock.h"
+
+1752828636 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\message\msg_exspiflash_music.c
+	"include.h"
+	"func.h"
+	"func_exspiflash_music.h"
+
+1764073308 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\message\msg_idle.c
+	"include.h"
+	"func.h"
+	"func_idle.h"
+
+1778126726 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\message\msg_music.c
+	"include.h"
+	"func.h"
+	"func_music.h"
+
+1723640436 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\output\bin\app.xm
+	"config.h"
+
+1681823712 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\output\bin\download.xm
+
+1681823712 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\output\bin\res.xm
+
+1731313774 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\output\bin\xcfg.xm
+
+1681823712 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\plugin\eq_table.c
+	"include.h"
+
+1681823712 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\plugin\multi_lang.c
+	"include.h"
+
+1758097450 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\plugin\plugin.c
+	"include.h"
+
+1778836380 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\port\port_init.c
+	"include.h"
+
+1705568456 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\port\port_ir.c
+	"include.h"
+
+1732519650 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\port\port_key.c
+	"include.h"
+
+1685343840 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\port\port_led.c
+	"include.h"
+
+1681823712 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\port\port_ledseg.c
+	"include.h"
+
+1681823712 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\port\port_mute.c
+	"include.h"
+
+1756452372 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\port\port_pwm.c
+	"include.h"
+	"port_pwm.h"
+
+1688111080 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\port\port_sd.c
+	"include.h"
+
+1685686754 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\port\port_sd1.c
+	"include.h"
+
+1778557977 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\ram.ld
+	"config.h"
+
+1737034670 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\s_start.s
+	"s_common.h"
+	"config.h"
+
+1681823712 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\header\s_common.h
+	"sfr.h"
+
+1778836276 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\functions\func.c
+	"include.h"
+
