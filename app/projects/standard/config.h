@@ -25,12 +25,12 @@
 #define SOFT_POWER_ON_OFF               0                       //是否使用软开关机功能
 #define SYS_SLEEP_TIME                  5                       //自动休眠时间(time * 1秒)
 #define SYS_OFF_TIME                    0                       //自动关机时间(time * 30秒)
-#define POWER_DOWN_MODE                 PWR_L4M                 //PWR_DOWN模式
+#define POWER_DOWN_MODE                 PWR_L3M                 //PWR_DOWN模式
 
-#define POWER_ON_FALL_NUM               4                       //低电平唤醒IO个数(0-即不使用低电平唤醒)
-#define POWER_ON_FALL_IO                {IO_PA0, IO_PA1, IO_PA2, IO_PA3}        //低电平唤醒IO(支持任意IO唤醒)
-// #define POWER_ON_FALL_IO                {IO_PA1, IO_PB1}        //低电平唤醒IO(支持任意IO唤醒)
-#define POWER_ON_RISE_NUM               3                       //高电平唤醒IO个数(0-即不使用高电平唤醒)
+#define POWER_ON_FALL_NUM               1                       //低电平唤醒IO个数(0-即不使用低电平唤醒)
+#define POWER_ON_FALL_IO                {IO_PA1}                //低电平唤醒IO(支持任意IO唤醒)
+// #define POWER_ON_FALL_IO                {IO_PA1, IO_PB1}     //低电平唤醒IO(支持任意IO唤醒)
+#define POWER_ON_RISE_NUM               0                       //高电平唤醒IO个数(0-即不使用高电平唤醒)
 #define POWER_ON_RISE_IO                {IO_PA4, IO_PA5, IO_PA6}        //高电平唤醒IO(支持任意IO唤醒)
 // #define POWER_ON_RISE_IO                {IO_PA2, IO_PB2}        //高电平唤醒IO(支持任意IO唤醒)
 #define POWER_OFF_IO                    IO_NONE                 //关机IO设置(用于避免按键未松开就进行关机流程,实际关机接口func_pwroff,如不使用IO关机,则设置为IO_NONE)
@@ -190,7 +190,7 @@
 /*****************************************************************************
  * Module    :外接SPIFLASH配置, 外接SPIFLASH可以播放MP3音乐文件, 及录音
  *****************************************************************************/
-#define EX_SPIFLASH_SUPPORT             0               //可以配置为 EXSPI_NOT_SUPPORT(0) 或 EXSPI_MUSIC 或 EXSPI_REC 或 (EXSPI_MUSIC | EXSPI_REC) EXSPI_MUSIC需打开MUSIC_DECODE_BK_EN
+#define EX_SPIFLASH_SUPPORT             EXSPI_MUSIC               //可以配置为 EXSPI_NOT_SUPPORT(0) 或 EXSPI_MUSIC 或 EXSPI_REC 或 (EXSPI_MUSIC | EXSPI_REC) EXSPI_MUSIC需打开MUSIC_DECODE_BK_EN
 
 #define SPIFLASH_BAUD                   (500000)        //SPI波特率500K
 #define SPIFLASH_MAP                    SPI1MAP_G3      //SPI CLK/DI/DO IO
@@ -199,13 +199,13 @@
 
 #if (EX_SPIFLASH_SUPPORT & EXSPI_MUSIC)
 //FLASH_MUSIC.BIN 镜像文件占用区域(BYTE)
-#define SPIFLASH_MUSIC_BEGIN_ADDR       0               //FLASH_MUSIC.BIN镜像文件默认从0地址开始存放,此宏暂不支持修改.
-#define SPIFLASH_MUSIC_END_ADDR         (1024*36)       //FLASH_MUSIC.BIN镜像文件结束地址. 测试DEMO的镜像文件是36K大小.
+#define SPIFLASH_MUSIC_BEGIN_ADDR       0               //FLASH_MUSIC.BIN镜像文件默认从0地址开始存放,.
+#define SPIFLASH_MUSIC_END_ADDR         (1024*36)       //FLASH_MUSIC.BIN镜像文件结束地址. 测试DEMO的镜像文件是36K大此宏暂不支持修改小.
 #define SPIFLASH_MUSIC_BIN_WRITE_TEST   0               //默认的FLASH_MUSIC.BIN写入SPIFLASH, 可以在func_exspiflash_music中测试外接SPIFLASH播放MP3.
 
 #define EXSPI_WAV_EN                    1               //是否支持exspiflash  wav音频播放
 #define EXSPI_MP3_EN                    1               //是否支持exspiflash  mp3音频播放
-#define EXSPI_LSBC_EN                   1               //是否支持exspiflash lsbc音频播放
+#define EXSPI_LSBC_EN                   0               //是否支持exspiflash lsbc音频播放
 #define EXSPI_ESBC_EN                   0               //是否支持exspiflash esbc音频播放
 #endif
 
@@ -515,7 +515,7 @@
 #define RGB_CROSSBAR_IO                 IO_PB2      //crossbar的SPI1 DO IO任意mapping
 
 #define ENERGY_LED_EN                   0           //能量灯软件PWM显示,声音越大,点亮的灯越多.
-#define TMR2_US_EN                      0           //timer2做10us定时器
+#define TMR2_US_EN                      1           //timer2做10us定时器
 #define SYS_PARAM_RTCRAM                0           //是否系统参数保存到RTCRAM
 #define VBAT_DETECT_EN                  1           //电池电量检测功能
 #define VBAT2_ADCCH                     ADCCH_VBAT  //ADCCH_VBAT为内部1/2电压通路，带升压应用需要外部ADC通路检测1/2电池电压

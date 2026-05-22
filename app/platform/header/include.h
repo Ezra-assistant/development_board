@@ -26,4 +26,6 @@
 //资源文件
 #include "res.h"
 
+#include "func_exspiflash_music.h"
+
 #endif // _INCLUDE_H

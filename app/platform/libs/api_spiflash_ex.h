@@ -3,7 +3,7 @@
 
 //及镜像文件播放相关函数
 u32 exspiflash_music_get_file_total(void);      //获取SPI1 flash文件总数
-void exspiflash_music_num_kick_do(u32 num);        //播放SPI1 flash当前num号的音频
+void exspiflash_music_num_kick_do(u32 num);     //播放SPI1 flash当前num号的音频
 u32 exspiflash_music_get_cur_file_len(void);    //获取SPI1 flash当前num号音频长度
 u8 exspiflash_msc_version(void);                //获取SPI1 flash打包版本标志
 

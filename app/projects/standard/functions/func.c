@@ -1,5 +1,9 @@
 #include "include.h"
 
+#define NORMAL_KEY_SCAN 0
+#define IRRX_RECEIVE 1
+
+
 func_cb_t func_cb AT(.buf.func_cb);
 
 void spi1_led_auto_process(void);
@@ -46,7 +50,7 @@ void print_info(void)
 
 
 /* =====普通KEY 相关参数===== */
-#if 1
+#if NORMAL_KEY_SCAN
 /* KEY 宏定义 */
 #define BASE_BUF_ADDR 0x11000078
 #define BASE_LEN_ADDR 0x1100007c
@@ -70,9 +74,6 @@ u8 units_num = 0;
 u8 play_single_flag = 0;
 u8 play_cycle_flag = 0;
 #endif
-
-
-
 
 
 /* =====唤醒与休眠===== */
@@ -127,8 +128,9 @@ void system_sleep_process() {
 
 #endif
 
+
 /* =====普通按键播放===== */
-#if 1
+#if 0
 
 /* =====普通按键播放 循环/累加音频 相关函数===== */
 #if 1
@@ -262,7 +264,7 @@ void key_play_process() {
 
     u16 msg = msg_dequeue();
     // 不是我这里能处理的msg直接送回去
-    if (!((msg == 0x0081) || (msg == 0x0081) || (msg == 0x0E81) || (msg == 0x0E82))) {
+    if (!((msg == 0x0081) || (msg == 0x0082) || (msg == 0x0E81) || (msg == 0x0E82))) {
         msg_enqueue(msg);
         return;
     }
@@ -329,14 +331,8 @@ void key_play_process() {
 #endif
 
 
-
-
-
-
-
-
 /* =====矩阵按键播放 指定数字音频===== */
-#if 1
+#if 0
 
 /* 全局变量 */
 u16 play_num_msg = 0;
@@ -482,7 +478,7 @@ void matrix_key_led_process(u16 msg) {
 
 /* =====矩阵按键 控制数码管亮灭===== */
 // (按键 0~9 控制 数码管显示 0~9) (按键 * 控制数字++) (按键 # 控制数字 --)
-#if 1
+#if 0
 void matrix_key_seg7_process(void) {
     u16 msg = msg_dequeue();
     /* 不是我这里能处理的msg直接送回去 */
@@ -558,6 +554,169 @@ void matrix_key_play_and_led_process(void) {
 
 }
 #endif
+
+
+
+/* =====SPI1===== */
+void spi1_audio_process(void) {
+    if (music_layer_sta_get(MSC_LAYER0) == LAYER_STOP) {
+        exspi_msc.cur_num = 10;
+        exspiflash_music_num_kick_do(exspi_msc.cur_num);
+    }
+    // u16 msg = msg_dequeue();
+    // if (msg == 0x0081) {
+    //     exspiflash_music_switch_file(1);
+    //     printf("0x0081\n");
+    // }
+    // if (msg == 0x0082) {
+    //     exspi_msc.cur_num = 4;
+    //     exspiflash_music_num_kick_do(exspi_msc.cur_num);
+    //     printf("0x0082\n");
+    // }
+}
+
+
+/* =====红外接收处理函数===== */
+#if IRRX_RECEIVE
+/* 全局变量 */
+u32 check_irrx_register; // 高 16位 地址码，低 16位 数据码
+u32 func_irrx_register;
+u8 data_original;
+u8 bgm_play_sta_flag;
+u8 sleep_sta_flag;
+
+u8 irrx_signal_capture_flag = 1;
+
+// 声明函数
+void check_irrx_register_func(void);
+void func_irrx_distribute(void);
+
+void irrx_receive_process(void) {
+    static u16 continue_press_count = 0;
+
+    u16 msg = msg_dequeue();
+
+    if (msg == 0x0D11) {
+        // 判断 check_irrx_register 是否正确的 API
+        check_irrx_register_func();
+
+        // 根据 func_irrx_register 对应功能
+        func_irrx_distribute();
+
+        continue_press_count = 0;
+    }
+    // 说明按键一直被按下
+    else if (msg == 0x0D22) {
+        if (data_original == 0x08 || data_original == 0x5A) {
+            continue_press_count++;
+            if (continue_press_count > 8) {
+                // 每三个调用一次
+                if (continue_press_count % 3 == 0)
+                    func_irrx_distribute();
+            }
+
+            // if (data_original == 0x45) {
+            //     delay_us(10000);
+            //     sfunc_pwroff();
+            // }
+        }
+    }
+    else if (msg == 0x0D44) {
+        // if (data_original == 0x45) {
+        //     delay_us(10000);
+        //     sfunc_pwroff();
+        // }
+    }
+    // 没用上的 msg 装载回去
+    else {
+        msg_enqueue(msg);
+    }
+}
+
+
+void check_irrx_register_func(void) {
+    u8 original = (check_irrx_register >> 16) & 0xFF;
+    u8 inverted = (check_irrx_register >> 24) & 0xFF;
+
+    if((original ^ inverted) == 0xFF) {
+        // 对比成功，原码和反码匹配
+        printf("Valid key code: 0x%02X\n", original);
+        func_irrx_register = check_irrx_register;
+    } else {
+        // 对比失败，数据无效，丢弃
+        printf("Invalid data: original 0x%02X inverted 0x%02X mismatch\n", original, inverted);
+    }
+}
+
+void func_irrx_distribute(void) {
+    data_original = (func_irrx_register >> 16) & 0xFF;
+
+    switch (data_original)
+    {
+    case 0x45:
+        sleep_sta_flag = !sleep_sta_flag;
+        if (sleep_sta_flag) {    // 休眠！
+            delay_ms(1000);
+            sfunc_pwroff();
+            // music_layer_sta_set(MSC_LAYER0, LAYER_PLAYING);
+        }
+        break;
+
+    case 0x47:
+        if (!bgm_play_sta_flag)
+            music_layer_sta_set(MSC_LAYER0, LAYER_PAUSE);
+        else
+            music_layer_sta_set(MSC_LAYER0, LAYER_PLAYING);
+
+        bgm_play_sta_flag = !bgm_play_sta_flag;
+        break;
+
+    case 0x40:
+        exspi_msc.cur_num = 3;
+        exspiflash_music_num_kick_do(exspi_msc.cur_num);
+        break;
+
+    case 0x07:
+        exspi_msc.cur_num = 4;
+        exspiflash_music_num_kick_do(exspi_msc.cur_num);
+        break;
+
+    case 0x15:
+        exspi_msc.cur_num = 5;
+        exspiflash_music_num_kick_do(exspi_msc.cur_num);
+        break;
+
+    case 0x09:
+        exspi_msc.cur_num = 6;
+        exspiflash_music_num_kick_do(exspi_msc.cur_num);
+        break;
+
+    case 0x19:
+        exspi_msc.cur_num = 7;
+        exspiflash_music_num_kick_do(exspi_msc.cur_num);
+        break;
+
+    case 0x08:
+        bsp_set_volume(bsp_volume_dec(sys_cb.vol, 1));
+        break;
+    case 0x5A:
+        bsp_set_volume(bsp_volume_inc(sys_cb.vol, 1));
+        break;
+    default:
+        break;
+    }
+}
+#endif
+
+
+
+
+
+
+
+
+
+
 
 AT(.text.func.process)
 void func_process(void)
@@ -839,7 +998,6 @@ void func_message(u16 msg)
 }
 
 
-
 ///进入一个功能的总入口
 AT(.text.func)
 void func_enter(void)
@@ -934,7 +1092,7 @@ void func_run(void)
 
 
 
-
+#if 0
 AT(.com_text.key_isr) FIQ
 void key1_isr() {
     if(WKUPEDG & BIT(22))       // 查下降沿标志
@@ -965,13 +1123,14 @@ void gpioa_2_init() {
     // ========== 4.注册中断 ==========
     sys_irq_init(IRQ_PORT_VECTOR, 1, key1_isr);     // 注册中断
 }
-
+#endif
 
 
 
 
 
 /* Normal Key GPIOA 2/3 初始化 */
+#if NORMAL_KEY_SCAN
 void normal_key_gpio_init(void) {
     // 初始化 GPIOA 2 输入
     GPIOAFEN &= ~BIT(2);    // PA2 复用关闭 -> 作为 普通GPIO 使用
@@ -985,8 +1144,10 @@ void normal_key_gpio_init(void) {
     GPIOADIR |=  BIT(3);    // PA3 方向设置为 输入
     GPIOAPU  |=  BIT(3);    // PA3 内部上拉10k
 }
+#endif
 
 /* matrix Key GPIOA 0~6 初始化 */
+#if 0
 void matrix_key_gpio_init(void) {
     /* GPIOA 0-3 设置为输出模式 行 */
     // 初始化 GPIOA 0 输出
@@ -1049,6 +1210,7 @@ void matrix_key_gpio_init(void) {
     msg_queue_detach(0x0A0A, 0);
     msg_queue_detach(0x0A0B, 0);
 }
+#endif
 
 /* matrix LED GPIOB 0-2 4-6 初始化 */
 #if 0
@@ -1101,6 +1263,7 @@ void matrix_led_gpio_init(void) {
 #endif
 
 /* Seg7 GPIOA11-12 GPIOB 0 9 1 2 4-7 初始化 */
+#if 0
 void seg7_gpio_init(void) {
     // 初始化 GPIOA 11 12 共阴 输出 GND
     GPIOAFEN &= ~BIT(11);    // PA11 复用关闭 -> 作为 普通GPIO 使用
@@ -1159,7 +1322,53 @@ void seg7_gpio_init(void) {
     GPIOB &= ~BIT(6);    // G
     GPIOB &= ~BIT(7);    // DP
 }
+#endif
 
+
+/* 外部 FLASH 初始化SPI1、音频播放相关功能 */
+#if 1
+/* 外部 FLASH 初始化SPI1 */
+void ex_spi1_init(void) {
+    exspi_msc.total_num = exspiflash_music_get_file_total();
+    exspi_msc.msc2_en   = exspiflash_msc_version();
+
+    register_spi_read_function(spiflash1_read); // 将指针指向外部 FLASH
+    // register_spi_read_function(NULL); // 将指针指向内部 FLASH
+
+    bsp_change_volume(10);
+}
+
+/* 外部 FLASH 音频播放相关功能描述
+    1、正常播放
+        exspi_msc.cur_num = 1;                              // 传入 num
+        exspiflash_music_num_kick_do(exspi_msc.cur_num);    // 根据 num 播放对应音频
+
+    2、叠加
+        2.1 自动叠加上去：只要是wav和别的类型音频（mp3，lsbc，vmp3）就能叠加，不用管接口，外部能自己选接口
+            exspiflash_music_num_kick_do(exspi_msc.cur_num);
+        2.2 可以选择具体的叠加层
+            exspiflash_wav_num_kick(MSC_LAYER1, exspi_msc.cur_num);
+
+    3、循环：直接再 while 判断状态后调用
+        if (music_layer_sta_get(MSC_LAYER0) != LAYER_PLAYING) {
+            exspi_msc.cur_num = 10;
+            exspiflash_music_num_kick_do(exspi_msc.cur_num);
+        }
+
+    4、音量控制
+    bsp_change_volume(10);
+*/
+#endif
+
+
+/* 红外检测信号 IO 初始化 */
+#if IRRX_RECEIVE
+void irrx_gpio_init(void) {
+    GPIOAFEN &= ~BIT(1);    // PA2 复用关闭 -> 作为 普通GPIO 使用
+    GPIOADE  |=  BIT(1);    // PA2 设置为 数字 IO
+    GPIOADIR |=  BIT(1);    // PA2 方向设置为 输入
+}
+#endif
 
 
 AT(.text.func)
@@ -1168,41 +1377,65 @@ void user_main(void)
     WDT_CLR();
 
     /* Matrix Key GPIOA 0~6 初始化 */
-    matrix_key_gpio_init();
+    // matrix_key_gpio_init();
 
     /* Matrix Led GPIOB 0~2 4~7 初始化 */
-#if 0
-    matrix_led_gpio_init();
-#endif
+    // matrix_led_gpio_init();
 
     /* Seg7 GPIOA11-12 GPIOB 0 9 1 2 4-7 初始化 */
-    seg7_gpio_init();
+    // seg7_gpio_init();
 
-
+#if NORMAL_KEY_SCAN
     /* Normal Key GPIOA 2/3 初始化 */
-    // normal_key_gpio_init();
+    normal_key_gpio_init();
+#endif
 
-    while (1)
-    {
+    /* SPI1 初始化 */
+    ex_spi1_init();
+
+    /* 红外检测 IO 初始化 */
+    irrx_gpio_init();
+
+
+    // 音量赋值
+    sys_cb.vol = 10;
+
+
+    while (1) {
         /* 系统自带的处理函数 */
         func_process();
 
+#if NORMAL_KEY_SCAN
         /* 普通按键播放处理函数 */
         // key_play_process();
+#endif
 
         /* 矩阵按键 单独控制LED 处理函数 */
         // matrix_key_led_process();
 
+
         /* =====矩阵按键 指定数字音频响起 控制LED亮灭 相关函数===== */
         // matrix_key_play_and_led_process();
+
 
         /* 矩阵按键 单独播放 处理函数 */
         // matrix_key_play_process();
 
+
         /* 矩阵按键 单独控制 seg7 处理函数 */
         // matrix_key_seg7_process();
 
+
         /* 系统休眠处理函数：空闲 10s 进入休眠 */
-        // system_sleep_process();
+        system_sleep_process();
+
+        /* 使用 SPI1 玩玩怎么播放音频（同SPI0一样操作） */
+        spi1_audio_process();
+
+#if IRRX_RECEIVE
+        /* 红外接收处理函数 */
+        irrx_receive_process();
+#endif
+
     }
 }

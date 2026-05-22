@@ -21,5 +21,6 @@
 #include "api_math.h"
 #include "api_fft.h"
 #include "api_lfs.h"
+#include "api_spiflash_ex.h"
 
 #endif //_API_H

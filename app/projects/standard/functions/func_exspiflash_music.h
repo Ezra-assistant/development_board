@@ -6,15 +6,15 @@
 
 
 typedef struct {
-    u8  msc2_en;            //V2°æ±¾music´ò°ü±êÖ¾
+    u8  msc2_en;            //V2ï¿½æ±¾musicï¿½ï¿½ï¿½ï¿½ï¿½Ö¾
     u16 total_num;
     u16 cur_num;
     u8  pause;
     u8  rec_no_file;
     #if SPIFLASH_MUSIC_BREAK_MEMORY
-    msc_breakpiont_t brkpt;//ÓÃÓÚ±£´æºÍ»Ö¸´²¥·ÅÎ»ÖÃµÄ½á¹¹Ìå
-    u16 save_time;//ÓÃÓÚÍË³öflashÄ£Ê½Ê±±£´æµÄÊ±¼ä
-    u16 save_num;//ÓÃÓÚÍË³öÊ±±£´æµ±Ç°²¥·Å¸èÇúµÄÐòºÅ
+    msc_breakpiont_t brkpt;//ï¿½ï¿½ï¿½Ú±ï¿½ï¿½ï¿½Í»Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ÃµÄ½á¹¹ï¿½ï¿½
+    u16 save_time;//ï¿½ï¿½ï¿½ï¿½ï¿½Ë³ï¿½flashÄ£Ê½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+    u16 save_num;//ï¿½ï¿½ï¿½ï¿½ï¿½Ë³ï¿½Ê±ï¿½ï¿½ï¿½æµ±Ç°ï¿½ï¿½ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     #endif // SPIFLASH_MUSIC_BREAK_MEMORY
 } exspiflash_msc_t;
 extern exspiflash_msc_t exspi_msc;

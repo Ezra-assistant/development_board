@@ -2,7 +2,17 @@
 
 sys_cb_t sys_cb AT(.buf.bsp.sys_cb);
 
-/* 自定义休眠相关变量 */
+/* 测试打印 */
+AT(.com_rodata.bsp.test)
+const char str1[] = "\n\nseg7_state = 0x%02X\n";
+AT(.com_rodata.bsp.test)
+const char str2[] = "1";
+AT(.com_rodata.bsp.test)
+const char str3[] = "0";
+AT(.com_rodata.bsp.test)
+const char str4[] = "you dao yin ma!\n";
+
+/* 自定义休眠 发送调试 */
 #if 1
 AT(.com_text.sleep_str)
 const char sleep_count_str[] = "Count to 10 and enter sleep mode: %d\n";
@@ -13,7 +23,7 @@ const char sleep_msg_str[] = "system sleepping...\n";
 
 
 /* 普通IO 按键扫描变量 与宏 */
-#if 1
+#if NORMAL_KEY_SCAN
 #define KEY1_PRESS_SHORT 0x0081
 #define KEY1_PRESS_LONG  0x0E81
 
@@ -21,9 +31,8 @@ const char sleep_msg_str[] = "system sleepping...\n";
 #define KEY2_PRESS_LONG  0x0E82
 #endif
 
-
 /* 普通IO 按键扫描 函数 */
-#if 1
+#if NORMAL_KEY_SCAN
 AT(.com_text.normal_key)
 void normal_key_scan(void) {
     static u16 key1_press_count = 0;
@@ -103,7 +112,7 @@ void normal_key_scan(void) {
 
 
 /* 正式代码 矩阵扫描KEY 变量与宏 */
-#if 1
+#if 0
 /*
  * 矩阵键盘配置
  * ================================================
@@ -164,7 +173,7 @@ u16 gpioa4_7_state = 0;
 #endif
 
 /* 正式代码 矩阵扫描KEY 函数 */
-#if 1
+#if 0
 /* 矩阵 每 5ms 循环 切换输出 函数 */
 AT(.com_text.matrix_key)
 void circle_change_output_to_GND(u8 count_flag) {
@@ -359,26 +368,14 @@ void matrix_leds_scan(void) {
 #endif
 
 
-
-/* 测试打印 */
-AT(.com_rodata.bsp.test)
-const char str1[] = "\n\nseg7_state = 0x%02X\n";
-AT(.com_rodata.bsp.test)
-const char str2[] = "1";
-AT(.com_rodata.bsp.test)
-const char str3[] = "0";
-
-
-/* 测试代码 矩阵扫描数码管 变量与宏 */
-#if 1
+/* 正式代码 矩阵扫描数码管 变量与宏 */
+#if 0
 #define NUM_STATES 21
 #define GND_SEG_OFFSET 11
 
 // 重新定义GPIO地址宏
 #define IS_GPIOA  1
 #define IS_GPIOB  2
-
-
 
 
 
@@ -434,9 +431,8 @@ const u8 seg7_states[NUM_STATES] = {
 };
 #endif
 
-
-/* 测试代码 矩阵扫描数码管 函数 */
-#if 1
+/* 正式代码 矩阵扫描数码管 函数 */
+#if 0
 void circle_change_output_to_gnd_seg7(u8 pin_num);
 void set_io_with_seg7_state(u8 seg7_state);
 void seg7_num_add(void);
@@ -604,15 +600,17 @@ void freqdet_init(void);
 AT(.com_text.timer)
 void usr_tmr5ms_isr(void)
 {
-
+#if NORMAL_KEY_SCAN
     /* 普通IO 按键扫描函数 */
-    // normal_key_scan();
+    normal_key_scan();
+#endif 
+
 
     /* 正式代码 矩阵扫描KEY函数 */
-    matrix_key_scan();
+    // matrix_key_scan();
 
     /* 数码管 扫描 函数 */
-    seg7_scan();       
+    // seg7_scan();       
 
 
     
@@ -652,7 +650,7 @@ void usr_tmr5ms_isr(void)
 
     //1s timer process
     if ((sys_cb.tmr5ms_cnt % 200) == 0) {
-        printf(sleep_count_str, sleep_count_flag + 1);
+        // printf(sleep_count_str, sleep_count_flag + 1);
         sleep_count_flag++;
 
         msg_enqueue(MSG_SYS_1S);

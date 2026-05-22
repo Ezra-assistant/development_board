@@ -1112,7 +1112,7 @@
 1758880788 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_clk.c
 	"include.h"
 
-1683508866 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\header\include.h
+1779265964 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\header\include.h
 	"global.h"
 	"xcfg.h"
 	"config.h"
@@ -1124,6 +1124,7 @@
 	"gui.h"
 	"plugin.h"
 	"res.h"
+	"func_exspiflash_music.h"
 
 1726054368 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\header\global.h
 	<stddef.h>
@@ -1146,7 +1147,7 @@
 
 1731313774 d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\xcfg.h
 
-1778752848 d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\config.h
+1779431936 d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\config.h
 	"config_define.h"
 	"config_extra.h"
 
@@ -1159,7 +1160,7 @@
 	"config.h"
 	"sfr.h"
 
-1742439736 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\libs\api.h
+1779266694 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\libs\api.h
 	"api_buffer.h"
 	"api_cm.h"
 	"api_music.h"
@@ -1180,12 +1181,13 @@
 	"api_math.h"
 	"api_fft.h"
 	"api_lfs.h"
+	"api_spiflash_ex.h"
 
 1719199108 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\libs\api_buffer.h
 
 1681823712 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\libs\api_cm.h
 
-1772415680 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\libs\api_music.h
+1779342636 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\libs\api_music.h
 
 1681823712 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\libs\api_sd.h
 
@@ -1221,7 +1223,7 @@
 
 1749608746 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\libs\api_lfs.h
 
-1778836111 d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\functions\func.h
+1779430858 d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\functions\func.h
 	"func_idle.h"
 	"func_music.h"
 	"func_lowpwr.h"
@@ -1237,7 +1239,7 @@
 
 1740983370 d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\functions\func_uart_upd.h
 
-1760943084 d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\functions\func_exspiflash_music.h
+1779333859 d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\functions\func_exspiflash_music.h
 	"spiflash/spiflash1.h"
 
 1757580454 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\modules\spiflash\spiflash1.h
@@ -1431,7 +1433,7 @@
 1761702006 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_sys.c
 	"include.h"
 
-1729498708 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_timer.c
+1779432516 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_timer.c
 	"include.h"
 
 1778310666 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_uart.c
@@ -1455,7 +1457,7 @@
 	"ledseg_common.h"
 	"ledseg_7p7s.h"
 
-1769754220 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\libs\strong_symbol.c
+1779341930 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\libs\strong_symbol.c
 	"include.h"
 
 1751608764 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\modules\fft\fft_proc.c
@@ -1548,13 +1550,13 @@
 	"func.h"
 	"func_clock.h"
 
-1763703816 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\functions\func_exspiflash_music.c
+1779335385 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\functions\func_exspiflash_music.c
 	"include.h"
 	"func.h"
 	"func_exspiflash_music.h"
 	"api_spiflash_ex.h"
 
-1746007302 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\libs\api_spiflash_ex.h
+1779266414 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\libs\api_spiflash_ex.h
 
 1778465406 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\functions\func_idle.c
 	"include.h"
@@ -1582,7 +1584,7 @@
 	"func.h"
 	"func_update.h"
 
-1778477957 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\main.c
+1779268852 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\main.c
 	"include.h"
 
 1757486926 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\message\msg_clock.c
@@ -1623,7 +1625,7 @@
 1758097450 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\plugin\plugin.c
 	"include.h"
 
-1778836380 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\port\port_init.c
+1779356944 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\port\port_init.c
 	"include.h"
 
 1705568456 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\port\port_ir.c
@@ -1661,6 +1663,6 @@
 1681823712 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\header\s_common.h
 	"sfr.h"
 
-1778836276 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\functions\func.c
+1779431796 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\functions\func.c
 	"include.h"
 

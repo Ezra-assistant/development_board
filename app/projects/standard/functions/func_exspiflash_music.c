@@ -258,7 +258,8 @@ void exspiflash_fs_enter(void)
 }
 
 AT(.text.func.music)
-static void func_exspiflash_music_enter(void)
+// static void func_exspiflash_music_enter(void)
+void func_exspiflash_music_enter(void)
 {
     msg_queue_clear();
 #if EX_FLASH_FS_EN

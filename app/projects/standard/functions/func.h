@@ -41,10 +41,12 @@ extern const u8 func_sort_table[];     //任务切换排序table
 
 extern u16 leds_states[KEY_STATES];
 
-
-
 // 全局 msg 变量
 extern u16 play_num_msg;
+
+extern u32 check_irrx_register; // irrx 测试寄存器
+extern u8 irrx_signal_capture_flag;
+ 
 
 
 #endif
