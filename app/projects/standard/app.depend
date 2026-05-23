@@ -1147,7 +1147,7 @@
 
 1731313774 d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\xcfg.h
 
-1779431936 d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\config.h
+1779517749 d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\config.h
 	"config_define.h"
 	"config_extra.h"
 
@@ -1223,7 +1223,7 @@
 
 1749608746 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\libs\api_lfs.h
 
-1779430858 d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\functions\func.h
+1779519964 d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\functions\func.h
 	"func_idle.h"
 	"func_music.h"
 	"func_lowpwr.h"
@@ -1415,7 +1415,7 @@
 1761119704 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_lfs.c
 	"include.h"
 
-1772609966 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_music.c
+1779436045 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_music.c
 	"include.h"
 
 1747797788 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_param.c
@@ -1433,7 +1433,7 @@
 1761702006 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_sys.c
 	"include.h"
 
-1779432516 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_timer.c
+1779525172 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_timer.c
 	"include.h"
 
 1778310666 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\bsp\bsp_uart.c
@@ -1563,7 +1563,7 @@
 	"func.h"
 	"func_idle.h"
 
-1778744465 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\functions\func_lowpwr.c
+1779440963 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\functions\func_lowpwr.c
 	"include.h"
 	"func.h"
 
@@ -1625,7 +1625,7 @@
 1758097450 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\plugin\plugin.c
 	"include.h"
 
-1779356944 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\port\port_init.c
+1779518360 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\port\port_init.c
 	"include.h"
 
 1705568456 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\port\port_ir.c
@@ -1663,6 +1663,6 @@
 1681823712 d:\desktop\code\sdk_ab15x_s1061_20260309\app\platform\header\s_common.h
 	"sfr.h"
 
-1779431796 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\functions\func.c
+1779526149 source:d:\desktop\code\sdk_ab15x_s1061_20260309\app\projects\standard\functions\func.c
 	"include.h"
 

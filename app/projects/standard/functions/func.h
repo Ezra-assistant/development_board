@@ -35,21 +35,7 @@ typedef struct {
 extern func_cb_t func_cb;
 extern const u8 func_sort_table[];     //任务切换排序table
 
-/* 自定义的内容 */
-#if 1
-#define KEY_STATES 12
 
-extern u16 leds_states[KEY_STATES];
-
-// 全局 msg 变量
-extern u16 play_num_msg;
-
-extern u32 check_irrx_register; // irrx 测试寄存器
-extern u8 irrx_signal_capture_flag;
- 
-
-
-#endif
 
 ALWAYS_INLINE void func_mp3_res_play(u32 addr, u32 len, u8 loop_cnt)
 {
@@ -80,3 +66,53 @@ void func_aux(void);
 void func_spdif(void);
 void func_exspiflash_music(void);
 #endif // _FUNC_H
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 自定义的内容 */
+#if 1
+#define KEY_STATES 12
+
+#if 0
+extern u16 leds_states[KEY_STATES];
+#endif
+
+// 全局 msg 变量
+#if 0
+extern u16 play_num_msg;
+#endif
+
+// irr相关的
+#if 1
+extern u32 check_irrx_register; // irrx 测试寄存器
+#endif
+
+// 全局休眠 flag
+#if 1
+extern u8 sleep_sta_flag;       // 检测系统是否处于休眠状态
+ #endif
+
+
+#endif
+
+
+
+
+
+
+

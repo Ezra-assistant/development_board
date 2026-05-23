@@ -1,5 +1,18 @@
 #include "include.h"
 
+#define USR_TMR50US_ISR 1
+#define IRRX_SIGNAL_SCAN 1
+
+
+
+#define COMMON_IRRX_SIGNAL_SCAN 0
+
+
+
+
+
+
+
 #if TMR2_US_EN
 
 #define US_1S_TEST      0   //测试10us定时,累计到达1s的时间,通过download检查打印时间
@@ -11,12 +24,6 @@ AT(.com_rodata.isr)
 const char str_t3[] = "10us_tick: %d\n";
 #endif//test
 
-AT(.com_text.timer)
-void usr_tmr1us_isr(void)
-{
-
-}
-
 
 
 
@@ -25,18 +32,10 @@ void usr_tmr1us_isr(void)
 /* 自定义内容 */
 u8 tmr10us_cnt;
 
-/* ===== 实现红外遥控器信号捕获 变量 ===== */
-#if 0
-static u8 io_irrx_cur_sta = 1;        // 当前电平
-static u8 io_irrx_last_sta = 1;       // 上一次电平状态（默认高）
-static u16 high_pin_us = 0;           // 当前高电平持续时间(μs)
-static u16 low_pin_us = 0;            // 当前低电平持续时间(μs)
-static u16 recore_high_pin_us = 0;    // 记录高电平持续时间(μs)，用于后续
-static u16 recore_low_pin_us = 0;     // 记录低电平持续时间(μs)，用于后续
-static u32 idle_timer_count = 0       // 空闲计时，如果高电平持续超过20次，则判定为空闲
-static u8 is_signal_coming_flag = 0;  // 有信号，拉低线
-static u8 offset_point = 0;           // 用于偏移装载测试寄存器
-#endif
+
+/* ===== 红外遥控器 信号捕获 ===== */
+#if IRRX_SIGNAL_SCAN
+/* 红外遥控器信号捕获 变量 */
 // 定义解码状态
 #define IR_STAGE_IDLE       0
 #define IR_STAGE_LEAD_LOW   1
@@ -44,13 +43,31 @@ static u8 offset_point = 0;           // 用于偏移装载测试寄存器
 #define IR_STAGE_DATA       3
 #define IR_STAGE_REPEAT     4
 
+// 定义发送代码
+/* 代码说明：
+    1、捕获完 9ms的引导码低电平         后会发送：0x0D00
+    2、捕获完 整段红外信号              后会发送：0x0D11
+    3、捕获完 2.25ms的重复码高电平      后会发送：0x0D33
+    4、捕获完 0.56ms的重复码低电平      后会发送：0x0D44
+*/
+#define IR_MSG_START_LOW      0x0D00
+#define IR_MSG_DATA_COMPLETE  0x0D11
+#define IR_MSG_REPEAT_HIGH    0x0D33
+#define IR_MSG_REPEAT_LOW     0x0D44
+
+// 定义完整捕获的静态变量
 static u8 ir_stage = IR_STAGE_IDLE;
 static u8 io_irrx_last_sta = 1;       // 默认状态就是高电平
 static u32 pulse_duration_us = 0;     // 统一用一个变量记录当前电平持续时间
 static u8 offset_point = 0;
 
+// 定义残缺捕获专用的静态变量（防止多轮中断调用时丢失状态）
+static u8 special_bit_cnt = 0; // 残缺模式专用的计数器
+static u8 special_ir_stage = IR_STAGE_LEAD_HIGH;
 
-/* ===== 实现红外遥控器信号捕获 函数 ===== */
+
+/* 红外遥控器信号捕获 函数 */
+// 一、正常完整捕获红外信号
 AT(.com_text.irrx)
 void irrx_signal_capture(void) {
     // 1. 获取归一化的当前电平 (0 或 1)，避开 BIT(1) 造成的非 1 隐患
@@ -65,7 +82,7 @@ void irrx_signal_capture(void) {
     if (io_irrx_cur_sta != io_irrx_last_sta) {
         u8 finished_edge = io_irrx_last_sta;  // 刚刚结束的是什么电平
         u32 duration = pulse_duration_us;     // 拿到刚刚结束的电平宽度
- 
+
         pulse_duration_us = 0;                // 核心修改：立刻清零，保证新电平计时准确
         io_irrx_last_sta = io_irrx_cur_sta;   // 更新状态
 
@@ -83,28 +100,29 @@ void irrx_signal_capture(void) {
             // 红外接收头（低电平有效）收到突发的低电平，且时间符合 9ms 引导码
             if (finished_edge == 0 && duration >= 7500 && duration <= 10500) {
                 ir_stage = IR_STAGE_LEAD_LOW;
-                msg_enqueue(0x0D00);
+                msg_enqueue(IR_MSG_START_LOW);
             }
         }
-        // 状态二：已接收到引导低电平，等待 4.5ms 引导高电平
+        // 状态二：已接收到 9ms 引导低电平
         else if (ir_stage == IR_STAGE_LEAD_LOW) {
+            // 状态三：等待 4.5ms 引导高电平（说明是第一次按下发送）
             if (finished_edge == 1 && duration >= 3800 && duration <= 5200) {
                 ir_stage = IR_STAGE_DATA;
                 check_irrx_register = 0; // 准备开始装载，清零寄存器
                 offset_point = 0;        // 偏移指针清零
-            } 
-            // 状态四：已接收到 repeat 低电平，等待 2.25ms repeat 高电平
+            }
+            // 状态四：等待 2.25ms 重复码高电平（说明按下不松手重复发送）
             else if (finished_edge == 1 && duration >= 1800 && duration <= 2800) {
                 ir_stage = IR_STAGE_REPEAT;
 
                 // 发送按住没放手的 msg_code
-                msg_enqueue(0x0D22);
+                msg_enqueue(IR_MSG_REPEAT_HIGH);
             }
             else {
                 ir_stage = IR_STAGE_IDLE; // 宽度不对，判定为干扰，退回空闲
             }
         }
-        // 状态三：正在接收数据位
+        // 状态五：正在接收数据位
         else if (ir_stage == IR_STAGE_DATA) {
             // 根据【高电平】的宽度来判定 0 和 1
             if (finished_edge == 1) {
@@ -124,16 +142,16 @@ void irrx_signal_capture(void) {
 
                 // 4. 判定是否接收满 32 位数据 (0 ~ 31 位)
                 if (ir_stage != IR_STAGE_IDLE && offset_point == 32) {
-                    msg_enqueue(0x0D11);
+                    msg_enqueue(IR_MSG_DATA_COMPLETE);
                     // 在此处可以将完整的 check_irrx_register 赋值给你的全局功能寄存器
                     ir_stage = IR_STAGE_IDLE; // 成功接收，退回空闲状态等待下一次
                 }
             }
         }
-        // 状态四：如果重复发送，接收最后一个低电平
+        // 状态六：如果重复发送，接收最后一个低电平
         else if (ir_stage == IR_STAGE_REPEAT) {
             if (duration >= 450 && duration <= 700) {
-                msg_enqueue(0x0D44);
+                msg_enqueue(IR_MSG_REPEAT_LOW);
             }
             // 出现非法宽度，直接判定解码失败，复位
             ir_stage = IR_STAGE_IDLE;
@@ -146,43 +164,282 @@ void irrx_signal_capture(void) {
 }
 
 
+// 二、唤醒情况，残缺捕获红外信号
+#if 1
+AT(.com_text.irrx)
+void irrx_special_signal_capture(void) {
+    // 1. 获取归一化的当前电平
+    u8 io_irrx_cur_sta = (GPIOA & BIT(1)) ? 1 : 0;
+
+    // 2. 累加当前电平持续时间
+    if (pulse_duration_us < 200000) {
+        pulse_duration_us += 50;
+    }
+
+    // 3. 检测到电平跳变
+    if (io_irrx_cur_sta != io_irrx_last_sta) {
+        u8 finished_edge = io_irrx_last_sta;  // 刚刚结束的是什么电平
+        u32 duration = pulse_duration_us;     // 拿到刚刚结束的电平宽度
+
+        pulse_duration_us = 0;                // 立刻清零，保证新电平计时准确
+        io_irrx_last_sta = io_irrx_cur_sta;   // 更新状态
+
+        // 任何时候收到超长电平（如超过 15ms），说明一帧红外结束或断开，重置
+        if (duration > 15000) {
+            special_ir_stage = IR_STAGE_LEAD_HIGH;
+            special_bit_cnt = 0;
+            return;
+        }
+
+
+        if (special_ir_stage == IR_STAGE_LEAD_HIGH) {
+            // 判定是否为高电平引导码 (4.5ms)
+            if (finished_edge == 0) {
+                if (duration > 800 && duration <= 5000) {
+                    special_ir_stage = IR_STAGE_DATA;
+                    special_bit_cnt = 0;
+                }
+            }
+        }
+
+        // ===== 残缺捕获核心：捕获地址位，数据位 =====
+        else if (special_ir_stage == IR_STAGE_DATA) {
+            if (finished_edge == 1) {
+                u8 current_bit = 0xFF; // 预设为非法数据
+
+                // 判定是否为数据 1 (1.69ms)
+                if (duration >= 1200 && duration <= 2000) {
+                    current_bit = 1;
+                }
+                // 判定是否为数据 0 (0.56ms)
+                else if (duration >= 450 && duration <= 700) {
+                    current_bit = 0;
+                }
+
+                // 如果是有效的数据位（0 或 1）
+                if (current_bit != 0xFF) {
+                    // 核心右移逻辑：整体右移一位
+                    check_irrx_register >>= 1;
+
+                    // 如果当前位是 1，把它放在最高位 BIT(31)
+                    // 如果是 0，靠右移自动补 0，不需要额外操作
+                    if (current_bit == 1) {
+                        check_irrx_register |= 0x80000000;
+                    }
+
+                    special_bit_cnt++;
+
+                    // 4. 判定是否接收满 32 位数据
+                    if (special_bit_cnt == 32) {
+                        msg_enqueue(IR_MSG_DATA_COMPLETE);     // 完美达到 32 位，通知主函数
+                        special_bit_cnt = 0;     // 清空计数
+                        special_ir_stage = IR_STAGE_LEAD_HIGH;
+                    }
+                }
+                else {
+                    // 中间出现了杂波干扰，说明数据断层，必须清零重来
+                    special_bit_cnt = 0;
+                }
+            }
+
+            else {
+                special_ir_stage = IR_STAGE_LEAD_HIGH;
+            }
+        }
+    }
+}
+#endif
+
+#endif
+
+
+/* ============================== 通用 功能库 ======================================== */
+/* ===== 通用 红外遥控器 信号捕获 ===== */
+#if COMMON_IRRX_SIGNAL_SCAN
+/* 红外遥控器信号捕获 变量 */
+// 定义解码状态
+#define IR_STAGE_IDLE       0
+#define IR_STAGE_LEAD_LOW   1
+#define IR_STAGE_LEAD_HIGH  2
+#define IR_STAGE_DATA       3
+#define IR_STAGE_REPEAT     4
+
+// 定义发送代码
+/* 代码说明：
+    1、捕获完 9ms的引导码低电平         后会发送：0x0D00
+    2、捕获完 整段红外信号              后会发送：0x0D11
+    3、捕获完 2.25ms的重复码高电平      后会发送：0x0D33
+    4、捕获完 0.56ms的重复码低电平      后会发送：0x0D44
+*/
+#define IR_MSG_START_LOW      0x0D00
+#define IR_MSG_DATA_COMPLETE  0x0D11
+#define IR_MSG_REPEAT_HIGH    0x0D33
+#define IR_MSG_REPEAT_LOW     0x0D44
+
+// 定义完整捕获的静态变量
+static u8 ir_stage = IR_STAGE_IDLE;
+static u8 io_irrx_last_sta = 1;       // 默认状态就是高电平
+static u32 pulse_duration_us = 0;     // 统一用一个变量记录当前电平持续时间
+static u8 offset_point = 0;
+
+AT(.com_text.irrx)
+void common_irrx_signal_capture(void) {
+    // 1. 获取归一化的当前电平 (0 或 1)，避开 BIT(1) 造成的非 1 隐患
+    u8 io_irrx_cur_sta = (GPIOA & BIT(1)) ? 1 : 0;
+
+    // 2. 累加当前电平的持续时间（增加防溢出保护，防止超长空闲时 u16/u32 翻转）
+    if (pulse_duration_us < 200000) {
+        pulse_duration_us += 50;
+    }
+
+    // 3. 检测到电平跳变（边缘触发）
+    if (io_irrx_cur_sta != io_irrx_last_sta) {
+        u8 finished_edge = io_irrx_last_sta;  // 刚刚结束的是什么电平
+        u32 duration = pulse_duration_us;     // 拿到刚刚结束的电平宽度
+
+        pulse_duration_us = 0;                // 核心修改：立刻清零，保证新电平计时准确
+        io_irrx_last_sta = io_irrx_cur_sta;   // 更新状态
+
+        // ===== 状态机核心逻辑 =====
+
+        // 任何时候收到超长电平（如超过 15ms），强制复位状态机，防止死锁
+        if (duration > 15000) {
+            ir_stage = IR_STAGE_IDLE;
+            offset_point = 0;
+            return;
+        }
+
+        // 特殊：如果处于休眠状态
+        if (sleep_sta_flag) {
+            // 直接准备接收 地址位和数据位
+            ir_stage = IR_STAGE_DATA;
+            check_irrx_register = 0; // 准备开始装载，清零寄存器
+            offset_point = 0;        // 偏移指针清零
+        }
+
+        // 状态一：空闲状态
+        if (ir_stage == IR_STAGE_IDLE) {
+            // 红外接收头（低电平有效）收到突发的低电平，且时间符合 9ms 引导码
+            if (finished_edge == 0 && duration >= 7500 && duration <= 10500) {
+                ir_stage = IR_STAGE_LEAD_LOW;
+                msg_enqueue(IR_MSG_START_LOW);
+            }
+        }
+        // 状态二：已接收到 9ms 引导低电平
+        else if (ir_stage == IR_STAGE_LEAD_LOW) {
+            // 状态三：等待 4.5ms 引导高电平（说明是第一次按下发送）
+            if (finished_edge == 1 && duration >= 3800 && duration <= 5200) {
+                ir_stage = IR_STAGE_DATA;
+                check_irrx_register = 0; // 准备开始装载，清零寄存器
+                offset_point = 0;        // 偏移指针清零
+            }
+            // 状态四：等待 2.25ms 重复码高电平（说明按下不松手重复发送）
+            else if (finished_edge == 1 && duration >= 1800 && duration <= 2800) {
+                ir_stage = IR_STAGE_REPEAT;
+
+                // 发送按住没放手的 msg_code
+                msg_enqueue(IR_MSG_REPEAT_HIGH);
+            }
+            else {
+                ir_stage = IR_STAGE_IDLE; // 宽度不对，判定为干扰，退回空闲
+            }
+        }
+        // 状态五：正在接收数据位
+        else if (ir_stage == IR_STAGE_DATA) {
+            // 根据【高电平】的宽度来判定 0 和 1
+            if (finished_edge == 1) {
+                // 判定是否为数据 1 (1.69ms)
+                if (duration >= 1200 && duration <= 2000) {
+                    check_irrx_register |= ((u32)1 << offset_point);
+                    offset_point++;
+                }
+                // 判定是否为数据 0 (0.56ms)
+                else if (duration >= 450 && duration <= 700) {
+                    offset_point++;
+                }
+                // 出现非法宽度，直接判定解码失败，复位
+                else {
+                    ir_stage = IR_STAGE_IDLE;
+                }
+
+                // 4. 判定是否接收满 32 位数据 (0 ~ 31 位)
+                if (ir_stage != IR_STAGE_IDLE && offset_point == 32) {
+                    msg_enqueue(IR_MSG_DATA_COMPLETE);
+                    // 在此处可以将完整的 check_irrx_register 赋值给你的全局功能寄存器
+                    ir_stage = IR_STAGE_IDLE; // 成功接收，退回空闲状态等待下一次
+                }
+            }
+        }
+        // 状态六：如果重复发送，接收最后一个低电平
+        else if (ir_stage == IR_STAGE_REPEAT) {
+            if (duration >= 450 && duration <= 700) {
+                msg_enqueue(IR_MSG_REPEAT_LOW);
+            }
+            // 出现非法宽度，直接判定解码失败，复位
+            ir_stage = IR_STAGE_IDLE;
+        }
+        // 防御性设计：异常状态强行复位
+        else {
+            ir_stage = IR_STAGE_IDLE;
+        }
+    }
+}
+#endif
+
+
+
+#if USR_TMR50US_ISR
+AT(.com_text.timer)
+void usr_tmr50us_isr(void) {
+#if IRRX_SIGNAL_SCAN
+    if (!sleep_sta_flag) {
+        irrx_signal_capture();
+    }
+    else {
+        irrx_special_signal_capture();
+    }
+#endif
+
+
+#if COMMON_IRRX_SIGNAL_SCAN
+    common_irrx_signal_capture();
+#endif
+
+
+
+
+
+
+}
+#endif
+
+
+
+
+
 
 
 
 
 AT(.com_text.timer)
-void usr_tmr50us_isr(void) {
-
-    irrx_signal_capture();
-
-    
-
+void usr_tmr1us_isr(void)
+{
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 AT(.com_text.isr)
 void timer2_isr(void)
 {
     tmr10us_cnt++;
 
+    // 50μs 调用一次
     if ((tmr10us_cnt % 5) == 0) {
+
+#if USR_TMR50US_ISR
         usr_tmr50us_isr();
+#endif
         tmr10us_cnt = 0;
     }
-
-
 
 
 

@@ -1,7 +1,43 @@
 #include "include.h"
 
-#define NORMAL_KEY_SCAN 0
-#define IRRX_RECEIVE 1
+/* 自定义 初始化 宏 */
+#define NORMAL_KEY_INIT 0
+#define MATRIX_KEY_INIT 0
+#define MATRIX_LED_INIT 0
+#define SEG7_INIT 0
+#define IRRX_INIT 1                             
+#define EX_SPI1_INIT 1                          
+
+#define NORMAL_KEY_PLAY_PROCESS 0
+#define MATRIX_KEY_PLAY_PROCESS 0
+#define MATRIX_KEY_LED_PROCESS 0
+#define MATRIX_KEY_PLAY_AND_LED_PROCESS 0
+#define MATRIX_KEY_SEG7_PROCESS 0
+#define SYSTEM_SLEEP_PROCESS 0
+#define IRRX_RECEIVE_PROCESS 1    
+#define EX_SPI1_AUDIO_PROCESS 1
+
+
+/* 通用 功能库 */
+#define COMMON_MECHANICAL_KEY_INIT 0            // 通用 机械开关 定义和处理 功能
+#define COMMON_MECHANICAL_KEY_PROCESS 0
+
+#define COMMON_AUTO_OFF_PROCESS 0               // 通用 自动关机 处理 功能
+
+#define COMMON_IRRX_INIT 1                      // 通用 红外检测 定义和处理 功能
+#define COMMON_IRRX_RECEIVE_PROCESS 1    
+
+#define COMMON_EX_SPI1_INIT 1                   // 通用 外部FLASH音频播放 定义和处理 功能
+#define COMMON_EX_SPI1_AUDIO_PROCESS 1
+
+
+
+// 系统休眠的全局变量
+u8 sleep_sta_flag = 0;   // 默认系统是没休眠的
+
+
+
+
 
 
 func_cb_t func_cb AT(.buf.func_cb);
@@ -41,16 +77,8 @@ void print_info(void)
 
 
 
-
-
-
-
-
-
-
-
-/* =====普通KEY 相关参数===== */
-#if NORMAL_KEY_SCAN
+/* =====按键播放 相关参数===== */
+#if NORMAL_KEY_PLAY_PROCESS
 /* KEY 宏定义 */
 #define BASE_BUF_ADDR 0x11000078
 #define BASE_LEN_ADDR 0x1100007c
@@ -77,7 +105,7 @@ u8 play_cycle_flag = 0;
 
 
 /* =====唤醒与休眠===== */
-#if 1
+#if SYSTEM_SLEEP_PROCESS
 
 /* =====唤醒与休眠 相关参数===== */
 #if 1
@@ -130,7 +158,7 @@ void system_sleep_process() {
 
 
 /* =====普通按键播放===== */
-#if 0
+#if NORMAL_KEY_PLAY_PROCESS
 
 /* =====普通按键播放 循环/累加音频 相关函数===== */
 #if 1
@@ -331,8 +359,8 @@ void key_play_process() {
 #endif
 
 
-/* =====矩阵按键播放 指定数字音频===== */
-#if 0
+/* =====矩阵按键播放 指定音频===== */
+#if MATRIX_KEY_PLAY_PROCESS
 
 /* 全局变量 */
 u16 play_num_msg = 0;
@@ -396,7 +424,7 @@ void matrix_key_play_process(void) {
     2.矩阵按键 控制数码管亮灭
 */
 /* =====矩阵按键 控制LED亮灭===== */
-#if 0
+#if MATRIX_KEY_LED_PROCESS
 /* =====矩阵按键 控制LED亮灭 相关参数===== */
 #if 0
 // 全局数组变量，使用 9bit，一个bit对应一个LED当前的的状态
@@ -478,7 +506,7 @@ void matrix_key_led_process(u16 msg) {
 
 /* =====矩阵按键 控制数码管亮灭===== */
 // (按键 0~9 控制 数码管显示 0~9) (按键 * 控制数字++) (按键 # 控制数字 --)
-#if 0
+#if MATRIX_KEY_SEG7_PROCESS
 void matrix_key_seg7_process(void) {
     u16 msg = msg_dequeue();
     /* 不是我这里能处理的msg直接送回去 */
@@ -529,8 +557,8 @@ void matrix_key_seg7_process(void) {
 }
 #endif
 
-/* =====矩阵按键 指定数字音频响起 控制LED/Seg7 亮灭 相关函数===== */
-#if 0
+/* =====矩阵按键 指定 数字音频响起 并 LED/Seg7 亮灭===== */
+#if MATRIX_KEY_PLAY_AND_LED_PROCESS
 void matrix_key_play_and_led_process(void) {
     u16 msg = msg_dequeue();
     // 不是我这里能处理的msg直接送回去
@@ -556,9 +584,9 @@ void matrix_key_play_and_led_process(void) {
 #endif
 
 
-
-/* =====SPI1===== */
-void spi1_audio_process(void) {
+/* =====外部FLASH音频播放===== */
+#if EX_SPI1_AUDIO_PROCESS
+void ex_spi1_audio_process(void) {
     if (music_layer_sta_get(MSC_LAYER0) == LAYER_STOP) {
         exspi_msc.cur_num = 10;
         exspiflash_music_num_kick_do(exspi_msc.cur_num);
@@ -574,29 +602,34 @@ void spi1_audio_process(void) {
     //     printf("0x0082\n");
     // }
 }
+#endif
 
 
-/* =====红外接收处理函数===== */
-#if IRRX_RECEIVE
+/* =====红外接收===== */
+#if IRRX_RECEIVE_PROCESS
 /* 全局变量 */
 u32 check_irrx_register; // 高 16位 地址码，低 16位 数据码
 u32 func_irrx_register;
 u8 data_original;
 u8 bgm_play_sta_flag;
-u8 sleep_sta_flag;
-
-u8 irrx_signal_capture_flag = 1;
 
 // 声明函数
 void check_irrx_register_func(void);
 void func_irrx_distribute(void);
+void wakeup_init(void);
 
+// 红外接收 处理函数
 void irrx_receive_process(void) {
     static u16 continue_press_count = 0;
 
     u16 msg = msg_dequeue();
 
-    if (msg == 0x0D11) {
+    // 1.捕获完 9ms的引导码低电平
+    if (msg == 0x0D00) {
+
+    }
+    // 2.捕获完 整段红外信号
+    else if (msg == 0x0D11) {
         // 判断 check_irrx_register 是否正确的 API
         check_irrx_register_func();
 
@@ -604,9 +637,10 @@ void irrx_receive_process(void) {
         func_irrx_distribute();
 
         continue_press_count = 0;
+
     }
-    // 说明按键一直被按下
-    else if (msg == 0x0D22) {
+    // 3.捕获完 2.25ms的重复码高电平
+    else if (msg == 0x0D33) {
         if (data_original == 0x08 || data_original == 0x5A) {
             continue_press_count++;
             if (continue_press_count > 8) {
@@ -614,25 +648,16 @@ void irrx_receive_process(void) {
                 if (continue_press_count % 3 == 0)
                     func_irrx_distribute();
             }
-
-            // if (data_original == 0x45) {
-            //     delay_us(10000);
-            //     sfunc_pwroff();
-            // }
         }
     }
+    // 4.捕获完 0.56ms的重复码低电平
     else if (msg == 0x0D44) {
-        // if (data_original == 0x45) {
-        //     delay_us(10000);
-        //     sfunc_pwroff();
-        // }
     }
     // 没用上的 msg 装载回去
     else {
         msg_enqueue(msg);
     }
 }
-
 
 void check_irrx_register_func(void) {
     u8 original = (check_irrx_register >> 16) & 0xFF;
@@ -646,19 +671,50 @@ void check_irrx_register_func(void) {
         // 对比失败，数据无效，丢弃
         printf("Invalid data: original 0x%02X inverted 0x%02X mismatch\n", original, inverted);
     }
+
+    check_irrx_register = 0;
 }
 
 void func_irrx_distribute(void) {
     data_original = (func_irrx_register >> 16) & 0xFF;
 
+    // 如果其它按键触发后，如果 sleep_sta_flag == 1 这重新关掉
+    if (sleep_sta_flag && (data_original != 0x45)) {
+        printf("Wakeup by invalid key [0x%02X] in sleep state! Going back to sleep...\n", data_original);
+
+        music_mode_exit(MSC_LAYER0, MSC_MP3);
+        delay_ms(1000);
+
+        // 关键：不放行，直接再次调用关机函数，让芯片重新睡过去
+        sfunc_pwroff();
+
+        // 唤醒后保证红外能够正常扫描（用于获取唤醒后第一个残缺信号）
+        wakeup_init();
+        return;
+    }
+
     switch (data_original)
     {
     case 0x45:
-        sleep_sta_flag = !sleep_sta_flag;
-        if (sleep_sta_flag) {    // 休眠！
-            delay_ms(1000);
-            sfunc_pwroff();
-            // music_layer_sta_set(MSC_LAYER0, LAYER_PLAYING);
+        if (sleep_sta_flag == 0) {
+            // 【当前是工作状态 -> 执行关机】
+            printf("Going to sleep...\n");
+            sleep_sta_flag = 1; // 标记系统已进入休眠
+
+            music_mode_exit(MSC_LAYER0, MSC_MP3);
+            delay_ms(500);
+
+            sfunc_pwroff(); // 调用你的低功耗休眠函数
+
+            // 唤醒后保证红外能够正常扫描（用于获取唤醒后第一个残缺信号）
+            wakeup_init();
+        } else {
+            sleep_sta_flag = 0;
+            printf("Wakeup success by 0x45!\n");
+            // 确定是 0x45 唤醒的之后，再把音频打开
+            exspi_msc.total_num = exspiflash_music_get_file_total();
+            exspi_msc.msc2_en   = exspiflash_msc_version();
+            register_spi_read_function(spiflash1_read);
         }
         break;
 
@@ -706,14 +762,98 @@ void func_irrx_distribute(void) {
         break;
     }
 }
+
+void wakeup_init(void) {
+    timer2_init();
+    PICCONSET = BIT(0);     //打开总中断
+
+    exspi_msc.total_num = exspiflash_music_get_file_total();
+    exspi_msc.msc2_en   = exspiflash_msc_version();
+    register_spi_read_function(spiflash1_read);
+}
 #endif
 
 
 
 
+/* ============================== 通用 功能库 ======================================== */
 
+/* ===== 通用 机械按键 接收 ===== */
+#if COMMON_MECHANICAL_KEY_PROCESS
+void common_mechanical_key_process(void) {
+    u16 msg = msg_dequeue();
+    if (msg == 0x0A00 || msg == 0x0B00 || msg == 0x0C00 || msg == 0x0D00 || msg == 0x0E00 || msg == 0x0F00) {
+        printf("short press, msg = 0x%04X\n", msg);
+    }
+    else if (msg == 0x0AA0 || msg == 0x0BA0 || msg == 0x0CA0 || msg == 0x0DA0 || msg == 0x0EA0 || msg == 0x0FA0) {
+        printf("long press, msg = 0x%04X\n", msg);
+    }
+    else {
+        msg_enqueue(msg);
+    }
+}
+#endif
 
+/* ===== 通用 自动关机 ===== */
+#if COMMON_AUTO_OFF_PROCESS
+/* 注意：任何关机操作之前，应该先把唤醒脚开启（以免导致芯片永久性关机） */
 
+// 宏定义
+#define AUTO_OFF_TIME 5 // 秒级
+
+// 函数声明
+void before_system_off(void);
+void after_system_off(void);
+
+// 通用自动关机 处理函数
+void common_auto_off_process(void) {
+    static u8 pwroff_count_flag = 0;
+
+    u16 msg = msg_dequeue();
+
+    /* 非空闲清空计数器：根据需要 增加对应系统中 非空闲的检测条件 */
+    if(msg == 0x0A00) {
+        pwroff_count_flag = 0; // 重置计数器标志位
+    }
+    /* 空闲状态 */
+    else if (msg == MSG_SYS_1S) {
+        pwroff_count_flag++;
+
+        if (pwroff_count_flag >= AUTO_OFF_TIME) {
+            // 清空计数标志位
+            pwroff_count_flag = 0;
+
+            // 重点1：关机需要让，置 1 全局关机标志位
+            // sleep_sta_flag = 1;                         // 根据实际标志位
+
+            // 重点2：关机前处理
+            before_system_off();
+
+            sfunc_pwroff();
+
+            // 重点3：关机后处理
+            after_system_off();
+
+        }
+        return;
+    }
+
+    msg_enqueue(msg);
+}
+
+// 重点2：关机前处理
+void before_system_off(void) {
+    /* 自定义关闭掉的：LED关闭、数码管关闭、电机关闭、声音关闭 */
+}
+
+// 重点3：关机后处理
+void after_system_off(void) {
+    /* 开启系统关闭掉的：某个中断，声音地址重定位 */
+
+    /* 开启自定义关闭掉的：LED开启、数码管关闭、电机关闭、声音关闭 */
+}
+
+#endif
 
 
 
@@ -1092,45 +1232,10 @@ void func_run(void)
 
 
 
-#if 0
-AT(.com_text.key_isr) FIQ
-void key1_isr() {
-    if(WKUPEDG & BIT(22))       // 查下降沿标志
-    {
-        WKUPCPND = BIT(22);     // 清下降沿标志
-
-        /* 代码逻辑 */
-        printf("key1 interrupt!\n");
-    }
-}
-
-void gpioa_2_init() {
-    // ========== 1.GPIOA2 配置 ==========
-    GPIOAFEN   &= ~BIT(2);                          // PA2 复用关闭 -> 作为 普通GPIO 使用
-    GPIOADE    |=  BIT(2);                          // PA2 设置为 数字 IO
-    GPIOADIR   |=  BIT(2);                          // PA2 方向设置为 输入
-    GPIOAPU    |=  BIT(2);                          // PA2 内部上拉10k
-
-    // ========== 2.PORT中断配置 ==========
-    PORTINTEN  |=  BIT(2);                          // PA2 PORT 中断使能
-    PORTINTEDG |=  BIT(2);                          // PA2 下降沿触发 产生信号 PORT_INT_FALL
-
-    // ========== 3.唤醒系统配置 ==========
-    WKUPEDG    |= BIT(6);                           // 唤醒源6 边沿选择：下降沿检测信号 PORT_INT_FALL
-    WKUPCPND    = BIT(22);                          // 写 WKCPND[6] = 1，清除唤醒源6（PORT_INT_FALL）的挂起标志
-    WKUPCON    |= BIT(6) | BIT(16);                 // 配置哪个唤醒源使能（控制寄存器）：下降沿的唤醒源使能，中断总使能
-
-    // ========== 4.注册中断 ==========
-    sys_irq_init(IRQ_PORT_VECTOR, 1, key1_isr);     // 注册中断
-}
-#endif
-
-
-
 
 
 /* Normal Key GPIOA 2/3 初始化 */
-#if NORMAL_KEY_SCAN
+#if NORMAL_KEY_INIT
 void normal_key_gpio_init(void) {
     // 初始化 GPIOA 2 输入
     GPIOAFEN &= ~BIT(2);    // PA2 复用关闭 -> 作为 普通GPIO 使用
@@ -1147,7 +1252,7 @@ void normal_key_gpio_init(void) {
 #endif
 
 /* matrix Key GPIOA 0~6 初始化 */
-#if 0
+#if MATRIX_KEY_INIT
 void matrix_key_gpio_init(void) {
     /* GPIOA 0-3 设置为输出模式 行 */
     // 初始化 GPIOA 0 输出
@@ -1213,7 +1318,7 @@ void matrix_key_gpio_init(void) {
 #endif
 
 /* matrix LED GPIOB 0-2 4-6 初始化 */
-#if 0
+#if MATRIX_LED_INIT
 void matrix_led_gpio_init(void) {
     /* GPIOB 0-2 设置为输出模式 行 */
     // 初始化 GPIOA 0 输出 GND
@@ -1263,7 +1368,7 @@ void matrix_led_gpio_init(void) {
 #endif
 
 /* Seg7 GPIOA11-12 GPIOB 0 9 1 2 4-7 初始化 */
-#if 0
+#if SEG7_INIT
 void seg7_gpio_init(void) {
     // 初始化 GPIOA 11 12 共阴 输出 GND
     GPIOAFEN &= ~BIT(11);    // PA11 复用关闭 -> 作为 普通GPIO 使用
@@ -1325,8 +1430,8 @@ void seg7_gpio_init(void) {
 #endif
 
 
-/* 外部 FLASH 初始化SPI1、音频播放相关功能 */
-#if 1
+/* 外部 FLASH 初始化SPI1、音频播放相关功能描述 */
+#if EX_SPI1_INIT
 /* 外部 FLASH 初始化SPI1 */
 void ex_spi1_init(void) {
     exspi_msc.total_num = exspiflash_music_get_file_total();
@@ -1362,11 +1467,53 @@ void ex_spi1_init(void) {
 
 
 /* 红外检测信号 IO 初始化 */
-#if IRRX_RECEIVE
+#if IRRX_INIT
 void irrx_gpio_init(void) {
     GPIOAFEN &= ~BIT(1);    // PA2 复用关闭 -> 作为 普通GPIO 使用
     GPIOADE  |=  BIT(1);    // PA2 设置为 数字 IO
     GPIOADIR |=  BIT(1);    // PA2 方向设置为 输入
+}
+#endif
+
+
+/* ====【通用】 机械按键扫描 初始化 ==== */
+#if COMMON_MECHANICAL_KEY_INIT
+void common_mechanical_key_init(void) {
+    /* KEY1 */
+    GPIOBFEN &= ~BIT(7);
+    GPIOBDE  |=  BIT(7);
+    GPIOBDIR |=  BIT(7);
+    GPIOBPU  |=  BIT(7);
+
+    /* KEY2 */
+    GPIOBFEN &= ~BIT(6);
+    GPIOBDE  |=  BIT(6);
+    GPIOBDIR |=  BIT(6);
+    GPIOBPU  |=  BIT(6);
+
+    /* KEY3 */
+    GPIOBFEN &= ~BIT(5);
+    GPIOBDE  |=  BIT(5);
+    GPIOBDIR |=  BIT(5);   // PB5 方向设置为 输入
+    GPIOBPU  |=  BIT(5);   // PB5 内部上拉
+
+    /* KEY4 */
+    GPIOBFEN &= ~BIT(4);
+    GPIOBDE  |=  BIT(4);
+    GPIOBDIR |=  BIT(4);
+    GPIOBPU  |=  BIT(4);
+
+    /* KEY5 */
+    GPIOBFEN &= ~BIT(2);
+    GPIOBDE  |=  BIT(2);
+    GPIOBDIR |=  BIT(2);
+    GPIOBPU  |=  BIT(2);
+
+    msg_queue_detach(0x0A00, 0);
+    msg_queue_detach(0x0B00, 0);
+    msg_queue_detach(0x0C00, 0);
+    msg_queue_detach(0x0D00, 0);
+    msg_queue_detach(0x0E00, 0);
 }
 #endif
 
@@ -1376,26 +1523,39 @@ void user_main(void)
 {
     WDT_CLR();
 
+#if MATRIX_KEY_INIT
     /* Matrix Key GPIOA 0~6 初始化 */
-    // matrix_key_gpio_init();
+    matrix_key_gpio_init();
+#endif
 
+#if MATRIX_LED_INIT
     /* Matrix Led GPIOB 0~2 4~7 初始化 */
     // matrix_led_gpio_init();
+#endif
 
+#if SEG7_INIT
     /* Seg7 GPIOA11-12 GPIOB 0 9 1 2 4-7 初始化 */
-    // seg7_gpio_init();
+    seg7_gpio_init();
+#endif
 
-#if NORMAL_KEY_SCAN
+#if NORMAL_KEY_INIT
     /* Normal Key GPIOA 2/3 初始化 */
     normal_key_gpio_init();
 #endif
 
+#if EX_SPI1_INIT
     /* SPI1 初始化 */
     ex_spi1_init();
+#endif
 
+#if IRRX_INIT
     /* 红外检测 IO 初始化 */
     irrx_gpio_init();
+#endif
 
+#if COMMON_MECHANICAL_KEY_INIT
+    common_mechanical_key_init();
+#endif
 
     // 音量赋值
     sys_cb.vol = 10;
@@ -1405,37 +1565,59 @@ void user_main(void)
         /* 系统自带的处理函数 */
         func_process();
 
-#if NORMAL_KEY_SCAN
-        /* 普通按键播放处理函数 */
-        // key_play_process();
+/* 普通按键播放处理函数 */
+#if NORMAL_KEY_PLAY_PROCESS
+        key_play_process();
 #endif
 
-        /* 矩阵按键 单独控制LED 处理函数 */
-        // matrix_key_led_process();
+/* 矩阵按键 单独播放 处理函数 */
+#if MATRIX_KEY_PLAY_PROCESS
+        matrix_key_play_process();
+#endif
 
+/* 矩阵按键 单独控制LED 处理函数 */
+#if MATRIX_KEY_LED_PROCESS
+        matrix_key_led_process();
+#endif
 
-        /* =====矩阵按键 指定数字音频响起 控制LED亮灭 相关函数===== */
-        // matrix_key_play_and_led_process();
+/* 矩阵按键 指定 数字音频响起 并 LED亮灭 处理函数 */
+#if MATRIX_KEY_PLAY_AND_LED_PROCESS
+        matrix_key_play_and_led_process();
+#endif
 
+/* 矩阵按键 单独控制 seg7 处理函数 */
+#if MATRIX_KEY_SEG7_PROCESS
+        matrix_key_seg7_process();
+#endif
 
-        /* 矩阵按键 单独播放 处理函数 */
-        // matrix_key_play_process();
-
-
-        /* 矩阵按键 单独控制 seg7 处理函数 */
-        // matrix_key_seg7_process();
-
-
-        /* 系统休眠处理函数：空闲 10s 进入休眠 */
+/* 系统休眠处理函数：空闲 10s 进入休眠 */
+#if SYSTEM_SLEEP_PROCESS
         system_sleep_process();
+#endif
 
-        /* 使用 SPI1 玩玩怎么播放音频（同SPI0一样操作） */
-        spi1_audio_process();
+/* 外部 FLASH 使用 SPI1 播放音频 处理函数 */
+#if EX_SPI1_AUDIO_PROCESS
+        ex_spi1_audio_process();
+#endif
 
-#if IRRX_RECEIVE
-        /* 红外接收处理函数 */
+/* 红外接收 处理函数 */
+#if IRRX_RECEIVE_PROCESS
         irrx_receive_process();
 #endif
+
+/* 通用 机械按键 接收 处理函数===== */
+#if COMMON_MECHANICAL_KEY_PROCESS
+        common_mechanical_key_process();
+#endif
+
+/* ===== 通用 自动关机 处理函数 ===== */
+#if COMMON_AUTO_OFF_PROCESS
+        common_auto_off_process();
+#endif
+
+
+
+
 
     }
 }

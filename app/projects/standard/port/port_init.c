@@ -1,38 +1,45 @@
 #include "include.h"
 
+
+
+
+#define SYSTEM_SLEEP_COUNT 0
+
+#define NORMAL_KEY_SCAN 0
+#define MATRIX_KEY_SCAN 0
+#define SEG7_SCAN 0
+#define MATRIX_LEDS_SCAN 0
+
+
+/* 通用 功能库 */
+#define COMMON_MECHANICAL_KEY_SCAN 0        // 通用 机械开关扫描 功能
+
+
+
+
+
 sys_cb_t sys_cb AT(.buf.bsp.sys_cb);
 
-/* 测试打印 */
-AT(.com_rodata.bsp.test)
-const char str1[] = "\n\nseg7_state = 0x%02X\n";
-AT(.com_rodata.bsp.test)
-const char str2[] = "1";
-AT(.com_rodata.bsp.test)
-const char str3[] = "0";
-AT(.com_rodata.bsp.test)
-const char str4[] = "you dao yin ma!\n";
+
 
 /* 自定义休眠 发送调试 */
-#if 1
+#if SYSTEM_SLEEP_COUNT
 AT(.com_text.sleep_str)
 const char sleep_count_str[] = "Count to 10 and enter sleep mode: %d\n";
 AT(.com_text.sleep_str)
 const char sleep_msg_str[] = "system sleepping...\n";
-
 #endif
 
-
-/* 普通IO 按键扫描变量 与宏 */
+/* 普通IO 按键扫描 */
 #if NORMAL_KEY_SCAN
+/* 普通IO 按键扫描变量 与宏 */
 #define KEY1_PRESS_SHORT 0x0081
 #define KEY1_PRESS_LONG  0x0E81
 
 #define KEY2_PRESS_SHORT 0x0082
 #define KEY2_PRESS_LONG  0x0E82
-#endif
 
 /* 普通IO 按键扫描 函数 */
-#if NORMAL_KEY_SCAN
 AT(.com_text.normal_key)
 void normal_key_scan(void) {
     static u16 key1_press_count = 0;
@@ -111,8 +118,10 @@ void normal_key_scan(void) {
 #endif
 
 
+/* 矩阵按键扫描 */
+#if MATRIX_KEY_SCAN
 /* 正式代码 矩阵扫描KEY 变量与宏 */
-#if 0
+#if 1
 /*
  * 矩阵键盘配置
  * ================================================
@@ -173,7 +182,7 @@ u16 gpioa4_7_state = 0;
 #endif
 
 /* 正式代码 矩阵扫描KEY 函数 */
-#if 0
+#if 1
 /* 矩阵 每 5ms 循环 切换输出 函数 */
 AT(.com_text.matrix_key)
 void circle_change_output_to_GND(u8 count_flag) {
@@ -261,8 +270,11 @@ void matrix_key_scan() {
     }
 }
 #endif
+#endif
 
 
+/* 矩阵LED扫描 */
+#if MATRIX_LEDS_SCAN
 /* 正式代码 矩阵扫描LED 变量与宏 */
 #if 0
 #define ROWS_LED 3
@@ -274,7 +286,6 @@ u8 matrix_array_index = 0;
 u8 led_row_count_flag = 0;
 
 #endif
-
 
 /* 正式代码 矩阵扫描LED 函数 */
 #if 0
@@ -366,8 +377,11 @@ void matrix_leds_scan(void) {
 #endif
 }
 #endif
+#endif
 
 
+/* 数码管扫描 */
+#if SEG7_SCAN
 /* 正式代码 矩阵扫描数码管 变量与宏 */
 #if 0
 #define NUM_STATES 21
@@ -579,13 +593,102 @@ void seg7_num_subtract(void) {
 }
 
 #endif
+#endif
 
 
 
+/* ============================== 通用 功能库 ======================================== */
+
+/* 通用 机械按键 扫描 */
+#if COMMON_MECHANICAL_KEY_SCAN
+AT(.com_text.test)
+/* 按键扫描 变量与宏 */
+#if 1
+#define KEY1_PRESS_CODE    0x0A00
+#define KEY2_PRESS_CODE    0x0B00
+#define KEY3_PRESS_CODE    0x0C00
+#define KEY4_PRESS_CODE    0x0D00
+#define KEY5_PRESS_CODE    0x0E00
+
+#define SHORT_PRESS_CODE   0x0000
+#define LONG_PRESS_CODE    0x00A0
+
+#define KEY_SUM 5
+
+#define LONG_PRESS_THRESHOLD 200  // 长按阈值 (200 * 5ms = 1s)
+#define SHORT_PRESS_MIN       6   // 防抖时间
+
+u16 key_return = 0; // 初始化按键返回值
+
+u16 key_press_count[KEY_SUM]  = {0};   // 按键按下时间
+u8 last_key_state[KEY_SUM]    = {0};   // 上一次按键状态
+u8 key_processed[KEY_SUM]     = {0};   // 防止长按时重复触发
+u8 current_key_state[KEY_SUM] = {0};   // 按键当前状态 1-按下 0-松开
+
+u16 key_msgs[KEY_SUM] = {
+    KEY1_PRESS_CODE,
+    KEY2_PRESS_CODE,
+    KEY3_PRESS_CODE,
+    KEY4_PRESS_CODE,
+    KEY5_PRESS_CODE
+};
+
+#endif
+
+/* 按键扫描 函数 */
+#if 1
+AT(.com_text.key)
+void common_mechanical_key_scan(void) {
+    // 获取按键当前状态
+    current_key_state[0] = (GPIOB & BIT(7)) == 0;  // KEY1 
+    current_key_state[1] = (GPIOB & BIT(6)) == 0;  // KEY2 
+    current_key_state[2] = (GPIOB & BIT(5)) == 0;  // KEY3 
+    current_key_state[3] = (GPIOB & BIT(4)) == 0;  // KEY4 
+    current_key_state[4] = (GPIOB & BIT(2)) == 0;  // KEY5 
 
 
+    // 循环检测 KEY1 ~ KEY6
+    for(int i = 0; i < (KEY_SUM); i++) {
+        // 下降沿检测（按键按下）
+        if (current_key_state[i] == 1 && last_key_state[i] == 0) {
+            key_press_count[i] = 0;
+            key_processed[i] = 0;
+        }
 
+        // 按键按住时累加（取消注释）
+        if (current_key_state[i] == 1) {
+            key_press_count[i]++;
 
+            // 长按触发（到达200次即1s 且未处理）
+            if ((key_press_count[i] >= LONG_PRESS_THRESHOLD) && !key_processed[i]) {
+                key_return = key_msgs[i] + LONG_PRESS_CODE;
+                key_processed[i] = 1;  // 防止继续触发
+            }
+        }
+
+        // 上升沿检测（按键松开）
+        if (current_key_state[i] == 0 && last_key_state[i] == 1) {
+            // 短按触发（如果松手后，未处理，且处于短按的范围内容）
+            if ((key_press_count[i] >= SHORT_PRESS_MIN) && (key_press_count[i] < LONG_PRESS_THRESHOLD) && !key_processed[i]) {
+                key_return = key_msgs[i] + SHORT_PRESS_CODE;
+                key_processed[i] = 1;  // 防止继续触发
+            }
+
+            key_press_count[i] = 0;  // 复位计数
+            key_processed[i] = 0;
+        }
+
+        last_key_state[i] = current_key_state[i];
+
+        // 发送消息
+        if (key_return != 0) {
+            msg_enqueue(key_return);
+            key_return = 0;
+        }
+    }
+}
+#endif
+#endif 
 
 
 
@@ -600,21 +703,24 @@ void freqdet_init(void);
 AT(.com_text.timer)
 void usr_tmr5ms_isr(void)
 {
+/* 普通IO 按键扫描函数 */
 #if NORMAL_KEY_SCAN
-    /* 普通IO 按键扫描函数 */
     normal_key_scan();
 #endif 
 
+/* 正式代码 矩阵扫描KEY函数 */
+#if MATRIX_KEY_SCAN
+    matrix_key_scan();
+#endif
 
-    /* 正式代码 矩阵扫描KEY函数 */
-    // matrix_key_scan();
+/* 数码管 扫描 函数 */
+#if SEG7_SCAN
+    seg7_scan();       
+#endif
 
-    /* 数码管 扫描 函数 */
-    // seg7_scan();       
-
-
-    
-
+#if COMMON_MECHANICAL_KEY_SCAN
+    common_mechanical_key_scan();
+#endif
 
 
 
@@ -650,8 +756,9 @@ void usr_tmr5ms_isr(void)
 
     //1s timer process
     if ((sys_cb.tmr5ms_cnt % 200) == 0) {
-        // printf(sleep_count_str, sleep_count_flag + 1);
+#if SYSTEM_SLEEP_COUNT
         sleep_count_flag++;
+#endif
 
         msg_enqueue(MSG_SYS_1S);
         sys_cb.lpwr_warning_cnt++;
@@ -661,13 +768,16 @@ void usr_tmr5ms_isr(void)
         #endif
     }
 
-    // 5s timer process 后面改成 10s
+#if SYSTEM_SLEEP_COUNT
+    // 10s timer process
     if (sleep_count_flag == 10) {
         sleep_count_flag = 0;
 
         // 计时 10s，发送数据给 led_scan，让他把灯关掉
-        // msg_enqueue(0x0B0C);
+        msg_enqueue(0x0B0C);
     }
+#endif
+
 }
 
 //timer tick interrupt(1ms)
@@ -675,10 +785,15 @@ AT(.com_text.timer)
 void usr_tmr1ms_isr(void)
 {
 
-    /* 矩阵 LED扫描 函数 */
-    // matrix_leds_scan();
+/* 矩阵 LED扫描 函数 */
+#if MATRIX_LEDS_SCAN
+    matrix_leds_scan();  
+#endif                                                                                        
 
-                                                                                                     
+
+
+
+
 
 
     sys_cb.tmr1ms_cnt++;

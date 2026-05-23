@@ -25,10 +25,10 @@
 #define SOFT_POWER_ON_OFF               0                       //是否使用软开关机功能
 #define SYS_SLEEP_TIME                  5                       //自动休眠时间(time * 1秒)
 #define SYS_OFF_TIME                    0                       //自动关机时间(time * 30秒)
-#define POWER_DOWN_MODE                 PWR_L3M                 //PWR_DOWN模式
+#define POWER_DOWN_MODE                 PWR_L4M                 //PWR_DOWN模式
 
-#define POWER_ON_FALL_NUM               1                       //低电平唤醒IO个数(0-即不使用低电平唤醒)
-#define POWER_ON_FALL_IO                {IO_PA1}                //低电平唤醒IO(支持任意IO唤醒)
+#define POWER_ON_FALL_NUM               2                       //低电平唤醒IO个数(0-即不使用低电平唤醒)
+#define POWER_ON_FALL_IO                {IO_PA1, IO_PB7}                //低电平唤醒IO(支持任意IO唤醒)
 // #define POWER_ON_FALL_IO                {IO_PA1, IO_PB1}     //低电平唤醒IO(支持任意IO唤醒)
 #define POWER_ON_RISE_NUM               0                       //高电平唤醒IO个数(0-即不使用高电平唤醒)
 #define POWER_ON_RISE_IO                {IO_PA4, IO_PA5, IO_PA6}        //高电平唤醒IO(支持任意IO唤醒)
